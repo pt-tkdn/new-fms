@@ -11,24 +11,25 @@ import IcTruckPoint from "#/shared/assets/icons/ic_truckpoint.svg";
 import IcRoad from "#/shared/assets/icons/ic_road.svg";
 import IcMonitoring from "#/shared/assets/icons/ic_monitory.svg";
 import IcReports from "#/shared/assets/icons/ic_reports.svg";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Power } from "lucide-react";
 import { iconPaths } from "#/shared/assets/icon_paths";
 import Image from "next/image";
+import Link from "next/link";
 
 const TEMP_SUB_MENU = ["GPS", "SIM Cards", "Vehicle", "Driver", "iButton"];
 
 const SideBarMenu = () => {
   return (
-    <div className="w-[240px] sticky top-0 h-screen border-r px-[10px] bg-white overflow-y-auto">
+    <aside className="w-[240px] sticky top-0 h-screen border-r px-[10px] bg-white overflow-y-auto">
       <Image
         className="w-36 object-contain mx-auto my-10"
         src={iconPaths.fmsLogo}
         alt="FMS Logo"
       />
       <Accordion collapsible asChild type="single">
-        <menu className="border-t">
+        <menu className="border-y ">
           <ul className="space-y-1">
-            <li className="group p-4 cursor-pointer hover:bg-primary rounded-lg hover:text-white flex flex-row items-center justify-between">
+            <li className="group p-4 cursor-pointer hover:bg-primary rounded-lg hover:text-white flex flex-row items-center justify-between transition-colors">
               <span className="flex flex-row gap-x-5 group-hover:text-white font-semibold text-base">
                 <IcSpeedometer className="fill-primary group-hover:fill-white" />
                 Overview
@@ -50,7 +51,7 @@ const SideBarMenu = () => {
                     <ChevronDown className="group:fill-white transition-transform duration-200" />
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col px-4">
+                <AccordionContent className="flex flex-col px-4 gap-y-2">
                   {TEMP_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
@@ -73,7 +74,7 @@ const SideBarMenu = () => {
                     <ChevronDown className="group:fill-white transition-transform duration-200" />
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col px-4">
+                <AccordionContent className="flex flex-col px-4 gap-y-2">
                   {TEMP_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
@@ -96,7 +97,7 @@ const SideBarMenu = () => {
                     <ChevronDown className="group:fill-white transition-transform duration-200" />
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col px-4">
+                <AccordionContent className="flex flex-col px-4 gap-y-2">
                   {TEMP_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
@@ -119,7 +120,7 @@ const SideBarMenu = () => {
                     <ChevronDown className="group:fill-white transition-transform duration-200" />
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col px-4">
+                <AccordionContent className="flex flex-col px-4 gap-y-2">
                   {TEMP_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
@@ -142,7 +143,7 @@ const SideBarMenu = () => {
                     <ChevronDown className="group:fill-white transition-transform duration-200" />
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col px-4">
+                <AccordionContent className="flex flex-col px-4 gap-y-2">
                   {TEMP_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
@@ -152,7 +153,19 @@ const SideBarMenu = () => {
           </ul>
         </menu>
       </Accordion>
-    </div>
+
+      <Link
+        href="/login"
+        className="group p-4 cursor-pointer hover:bg-primary rounded-lg hover:text-white flex flex-row items-center justify-between transition-colors"
+      >
+        <span className="flex flex-row items-center gap-x-5 group-hover:text-white font-semibold text-base">
+          <span className="flex items-center justify-center h-6 w-6 text-white bg-primary group-hover:bg-white group-hover:text-primary rounded-full">
+            <Power size={14} />
+          </span>
+          Logout
+        </span>
+      </Link>
+    </aside>
   );
 };
 

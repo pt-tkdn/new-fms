@@ -4,8 +4,8 @@ import Image from "next/image";
 
 const LoginPage: React.FC = () => {
   return (
-    <main className="flex flex-1 w-full h-screen">
-      <div className="px-14 py-16 h-screen w-full justify-center flex flex-col bg-white sm:h-auto sm:w-auto sm:m-auto sm:rounded-lg sm:shadow-lg">
+    <main className="flex flex-1 w-full min-h-screen">
+      <div className="px-14 py-16 w-full justify-center flex flex-col bg-white sm:h-auto sm:w-auto sm:m-auto sm:rounded-lg sm:shadow-lg">
         <Image
           className="w-56 mx-auto"
           src={iconPaths.fmsLogo}

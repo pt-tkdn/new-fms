@@ -20,6 +20,12 @@ body {
   }
 }
 
+@layer components {
+  .card {
+    @apply bg-white rounded-lg shadow-sm;
+  }
+}
+
 @layer base {
   :root {
     --background: #f0f4f8;

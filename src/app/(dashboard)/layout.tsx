@@ -1,5 +1,5 @@
-import Header from "#/components/dashboard-layout/header";
-import SideBarMenu from "#/components/dashboard-layout/sidebar";
+import Header from "#/components/dashboard-layout/StickyHeader";
+import SideBarMenu from "#/components/dashboard-layout/SideBarMenu";
 import { PropsWithChildren } from "react";
 
 const DashboardLayout: React.FC<PropsWithChildren> = ({ children }) => {

@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "#/shared/components/ui/button";
 import { Checkbox } from "#/shared/components/ui/checkbox";
 import { Input } from "#/shared/components/ui/input";
 import { Label } from "#/shared/components/ui/label";
@@ -9,7 +10,7 @@ const LoginForm: React.FC = () => {
   const router = useRouter();
   return (
     <form
-      className="mt-9 space-y-4"
+      className="relative mt-9 space-y-4"
       onSubmit={(e) => {
         e.preventDefault();
         router.push("/");
@@ -40,12 +41,9 @@ const LoginForm: React.FC = () => {
           Remember Password
         </Label>
       </div>
-      <button
-        type="submit"
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
+      <Button type="submit" className="w-full">
         Login
-      </button>
+      </Button>
     </form>
   );
 };

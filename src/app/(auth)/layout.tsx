@@ -4,18 +4,24 @@ import { PropsWithChildren } from "react";
 
 const AuthLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <>
-      <div className="lg:ml-[50vw] flex flex-col sm:flex-row">
-        <div className="hidden lg:flex flex-1 fixed w-[50vw] top-0 left-0">
-          <Image
-            className="w-full object-cover aspect-[0.72]"
-            src={illustrationPaths.mainIllustration}
-            alt="tag"
-          />
+    <div className="flex flex-col sm:flex-row">
+      <div className="hidden sticky lg:flex top-0 w-[50vw] left-0 h-screen">
+        <Image
+          className="w-full object-cover"
+          src={illustrationPaths.mainIllustration}
+          alt="tag"
+        />
+        <div className="absolute left-[60px] top-[100px] space-y-2">
+          <span className="inline-block text-white font-bold text-4xl bg-[#005EA7] px-5 py-3 rounded-md">
+            Solusi Sistem Tracking
+          </span>
+          <span className="inline-block text-white font-bold text-4xl bg-[#005EA7] px-5 py-3 rounded-md">
+            dan Keamanan Kendaraan Anda
+          </span>
         </div>
-        {children}
       </div>
-    </>
+      {children}
+    </div>
   );
 };
 
