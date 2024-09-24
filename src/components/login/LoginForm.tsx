@@ -1,5 +1,8 @@
 "use client";
 
+import { Checkbox } from "#/shared/components/ui/checkbox";
+import { Input } from "#/shared/components/ui/input";
+import { Label } from "#/shared/components/ui/label";
 import { useRouter } from "next/navigation";
 
 const LoginForm: React.FC = () => {
@@ -12,35 +15,34 @@ const LoginForm: React.FC = () => {
         router.push("/");
       }}
     >
-      <div>
+      <div className="space-y-2">
         <label
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
           Email
         </label>
-        <input
-          id="email"
-          type="email"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
+        <Input name="email" id="email" type="email" />
       </div>
-      <div>
+      <div className="space-y-2">
         <label
           htmlFor="password"
           className="block text-sm font-medium text-gray-700"
         >
           Password
         </label>
-        <input
-          id="password"
-          type="password"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
+        <Input name="password" id="password" type="password" />
+      </div>
+
+      <div className="flex items-center space-x-2">
+        <Checkbox id="terms" />
+        <Label htmlFor="terms" className="opacity-50 font-semibold">
+          Remember Password
+        </Label>
       </div>
       <button
         type="submit"
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
         Login
       </button>
