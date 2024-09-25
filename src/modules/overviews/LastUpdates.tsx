@@ -17,7 +17,7 @@ const LastUpdates = () => {
       <h1 className="block text-xl font-bold sticky z-[1] pt-5 top-0 bg-white">
         Last Updates
       </h1>
-      <div className="space-y-8">
+      <div className="space-y-5">
         {TEMP_UPDATES.map((update) => {
           return (
             <div className="flex gap-x-2" key={update.id}>

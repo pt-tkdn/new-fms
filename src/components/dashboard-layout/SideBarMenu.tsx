@@ -16,7 +16,31 @@ import { iconPaths } from "#/shared/assets/icon_paths";
 import Image from "next/image";
 import Link from "next/link";
 
-const TEMP_SUB_MENU = ["GPS", "SIM Cards", "Vehicle", "Driver", "iButton"];
+const ASSETS_SUB_MENU = ["GPS", "SIM Cards", "Vehicle", "Driver", "iButton"];
+const CONFIGURATION_SUB_MENU = [
+  "Stops",
+  "Routes",
+  "Sub Routes",
+  "Custom Alerts",
+  "GPS Command",
+];
+const OPERATION_SUB_MENU = ["Trip", "Upload Trip", "Deliveries"];
+const MONITORING_SUB_MENU = [
+  "Live Tracking",
+  "Monitoring Schematic",
+  "Monitoring Vehicle",
+  "Monitoring Router Vehicle",
+  "Monitoring Custom Alerts Event",
+];
+const REPORTS_SUB_MENU = [
+  "Report History Vehicle",
+  "Report Journey Driver",
+  "Report Checkpoint Vehicle",
+  "Report Position GPS",
+  "Report Geofence",
+  "Report Geofence Summary",
+  "Report Summary by KM",
+];
 
 const SideBarMenu = () => {
   return (
@@ -52,7 +76,7 @@ const SideBarMenu = () => {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col px-4 gap-y-2">
-                  {TEMP_SUB_MENU.map((item) => (
+                  {ASSETS_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
                 </AccordionContent>
@@ -75,7 +99,7 @@ const SideBarMenu = () => {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col px-4 gap-y-2">
-                  {TEMP_SUB_MENU.map((item) => (
+                  {CONFIGURATION_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
                 </AccordionContent>
@@ -98,7 +122,7 @@ const SideBarMenu = () => {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col px-4 gap-y-2">
-                  {TEMP_SUB_MENU.map((item) => (
+                  {OPERATION_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
                 </AccordionContent>
@@ -121,7 +145,7 @@ const SideBarMenu = () => {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col px-4 gap-y-2">
-                  {TEMP_SUB_MENU.map((item) => (
+                  {MONITORING_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
                 </AccordionContent>
@@ -138,13 +162,13 @@ const SideBarMenu = () => {
                         width={24}
                         height={24}
                       />
-                      <span>Report</span>
+                      <span>Reports</span>
                     </span>
                     <ChevronDown className="group:fill-white transition-transform duration-200" />
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col px-4 gap-y-2">
-                  {TEMP_SUB_MENU.map((item) => (
+                  {REPORTS_SUB_MENU.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
                 </AccordionContent>
