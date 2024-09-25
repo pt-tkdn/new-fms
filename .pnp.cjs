@@ -37,6 +37,7 @@ const RAW_RUNTIME_STATE =
           ["@types/node", "npm:20.16.5"],\
           ["@types/react", "npm:18.3.8"],\
           ["@types/react-dom", "npm:18.3.0"],\
+          ["@vis.gl/react-google-maps", "virtual:645702beb0dbb1c48b47c03c57c36c9eb3ef472cd23849616163e23d29379bf50118e7510ae75707d78989f93655cd74b630f503e10e99fedc653f79ff49d486#npm:1.2.0"],\
           ["class-variance-authority", "npm:0.7.0"],\
           ["clsx", "npm:2.1.1"],\
           ["dayjs", "npm:1.11.13"],\
@@ -3996,6 +3997,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/google.maps", [\
+      ["npm:3.58.1", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@types-google.maps-npm-3.58.1-df719add21-10c0.zip/node_modules/@types/google.maps/",\
+        "packageDependencies": [\
+          ["@types/google.maps", "npm:3.58.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/json5", [\
       ["npm:0.0.29", {\
         "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@types-json5-npm-0.0.29-f63a7916bd-10c0.zip/node_modules/@types/json5/",\
@@ -4271,6 +4281,34 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@ungap-structured-clone-npm-1.2.0-648f0b82e0-10c0.zip/node_modules/@ungap/structured-clone/",\
         "packageDependencies": [\
           ["@ungap/structured-clone", "npm:1.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@vis.gl/react-google-maps", [\
+      ["npm:1.2.0", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@vis.gl-react-google-maps-npm-1.2.0-c3098353f2-10c0.zip/node_modules/@vis.gl/react-google-maps/",\
+        "packageDependencies": [\
+          ["@vis.gl/react-google-maps", "npm:1.2.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:645702beb0dbb1c48b47c03c57c36c9eb3ef472cd23849616163e23d29379bf50118e7510ae75707d78989f93655cd74b630f503e10e99fedc653f79ff49d486#npm:1.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/@vis.gl-react-google-maps-virtual-c63897356e/4/AppData/Local/Yarn/Berry/cache/@vis.gl-react-google-maps-npm-1.2.0-c3098353f2-10c0.zip/node_modules/@vis.gl/react-google-maps/",\
+        "packageDependencies": [\
+          ["@vis.gl/react-google-maps", "virtual:645702beb0dbb1c48b47c03c57c36c9eb3ef472cd23849616163e23d29379bf50118e7510ae75707d78989f93655cd74b630f503e10e99fedc653f79ff49d486#npm:1.2.0"],\
+          ["@types/google.maps", "npm:3.58.1"],\
+          ["@types/react", "npm:18.3.8"],\
+          ["@types/react-dom", "npm:18.3.0"],\
+          ["fast-deep-equal", "npm:3.1.3"],\
+          ["react", "npm:18.3.1"],\
+          ["react-dom", "virtual:645702beb0dbb1c48b47c03c57c36c9eb3ef472cd23849616163e23d29379bf50118e7510ae75707d78989f93655cd74b630f503e10e99fedc653f79ff49d486#npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7518,6 +7556,7 @@ const RAW_RUNTIME_STATE =
           ["@types/node", "npm:20.16.5"],\
           ["@types/react", "npm:18.3.8"],\
           ["@types/react-dom", "npm:18.3.0"],\
+          ["@vis.gl/react-google-maps", "virtual:645702beb0dbb1c48b47c03c57c36c9eb3ef472cd23849616163e23d29379bf50118e7510ae75707d78989f93655cd74b630f503e10e99fedc653f79ff49d486#npm:1.2.0"],\
           ["class-variance-authority", "npm:0.7.0"],\
           ["clsx", "npm:2.1.1"],\
           ["dayjs", "npm:1.11.13"],\

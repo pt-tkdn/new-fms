@@ -7,6 +7,9 @@ const nextConfig = {
     });
     return config;
   },
+  experimental: {
+    typedRoutes: true,
+  },
 };
 
 export default nextConfig;

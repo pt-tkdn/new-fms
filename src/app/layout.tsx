@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "normalize.css";
+import "./build.css";
 import "./globals.css";
 
 export const metadata: Metadata = {

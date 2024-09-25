@@ -21,9 +21,6 @@ body {
 }
 
 @layer components {
-  .card {
-    @apply bg-white rounded-lg shadow-sm;
-  }
 }
 
 @layer base {
@@ -31,4 +28,8 @@ body {
     --background: #f0f4f8;
     --radius: 0.5rem;
   }
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-sm;
 }

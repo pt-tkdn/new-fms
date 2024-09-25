@@ -9,7 +9,7 @@ export default function OverviewPage() {
     <div className="flex flex-col p-8 gap-y-8">
       <div className="flex justify-between items-center">
         <span className="text-2xl font-semibold ">Hi, John Doe 👋🏻</span>
-        <span className="text-xl font-semibold opacity-50">
+        <span className="text-lg font-semibold opacity-50">
           {dayjs().format("DD MMM YYYY, HH.mm [WIB]")}
         </span>
       </div>

@@ -3,89 +3,90 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "#/shared/components/ui/table";
+import dayjs from "dayjs";
 
-const invoices = [
+const recentEvents = [
   {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
+    time: dayjs().format("DD MMM YYYY, HH:mm:ss"),
+    vehicle: "Toyota Avanza",
+    vehicleCode: "AVZ-001",
+    driverName: "John Doe",
+    event: "Speeding",
   },
   {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
+    time: dayjs()
+      .add(Math.ceil(Math.random() * 10), "minutes")
+      .format("DD MMM YYYY, HH:mm:ss"),
+    vehicle: "Honda Jazz",
+    vehicleCode: "JAZ-001",
+    driverName: "Jane Doe",
+    event: "Sleeping",
+  },
+
+  {
+    time: dayjs()
+      .add(Math.ceil(Math.random() * 10), "minutes")
+      .format("DD MMM YYYY, HH:mm:ss"),
+    vehicle: "Honda Civic",
+    vehicleCode: "CVC-001",
+    driverName: "Jane Doe",
+    event: "Smoke Detected",
+  },
+
+  {
+    time: dayjs()
+      .add(Math.ceil(Math.random() * 10), "minutes")
+      .format("DD MMM YYYY, HH:mm:ss"),
+    vehicle: "Mitsubishi Pajero",
+    vehicleCode: "PJR-199",
+    driverName: "Mike Doe",
+    event: "Driver Fatigue",
   },
   {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
+    time: dayjs()
+      .add(Math.ceil(Math.random() * 10), "minutes")
+      .format("DD MMM YYYY, HH:mm:ss"),
+    vehicle: "Toyota Alphard",
+    vehicleCode: "ALP-001",
+    driverName: "Rachel Doe",
+    event: "Speeding",
   },
 ];
 
 export default function TableDemo() {
   return (
-    <section className="card p-5">
+    <section className="card p-5 space-y-4">
       <h2 className="text-xl font-bold">Recent Events</h2>
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>A list of recent events</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-48">Time</TableHead>
+            <TableHead>Vehicle</TableHead>
+            <TableHead>Vehicle Code</TableHead>
+            <TableHead>Driver</TableHead>
+            <TableHead>Event</TableHead>
+            <TableHead>Location</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">
-                {invoice.totalAmount}
-              </TableCell>
-            </TableRow>
-          ))}
+          {recentEvents.map((event) => {
+            return (
+              <TableRow key={event.time}>
+                <TableCell>{event.time}</TableCell>
+                <TableCell>{event.vehicle}</TableCell>
+                <TableCell>{event.vehicleCode}</TableCell>
+                <TableCell>{event.driverName}</TableCell>
+                <TableCell>{event.event}</TableCell>
+                <TableCell className="text-blue-400">Unknown</TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">$2,500.00</TableCell>
-          </TableRow>
-        </TableFooter>
       </Table>
     </section>
   );
