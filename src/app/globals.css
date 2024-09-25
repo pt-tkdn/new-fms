@@ -25,7 +25,7 @@ body {
 
 @layer base {
   :root {
-    --background: #f0f4f8;
+    --background: #FBF8F6;
     --radius: 0.5rem;
   }
 }

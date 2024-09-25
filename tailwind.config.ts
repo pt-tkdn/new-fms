@@ -13,7 +13,7 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#2196F3",
+        primary: "#E28646",
       },
       fontFamily: {
         sans: ["var(--font-nunito-sans)"],

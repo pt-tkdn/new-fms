@@ -13,9 +13,9 @@ export default function OverviewPage() {
           {dayjs().format("DD MMM YYYY, HH.mm [WIB]")}
         </span>
       </div>
+      <VehicleStatus />
       <main className="flex flex-row gap-x-12">
         <div className="flex flex-1 flex-col gap-y-8">
-          <VehicleStatus />
           <LiveMap />
           <RecentEvents />
         </div>

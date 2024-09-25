@@ -12,10 +12,10 @@ const AuthLayout: React.FC<PropsWithChildren> = ({ children }) => {
           alt="tag"
         />
         <div className="absolute left-[60px] top-[100px] space-y-2">
-          <span className="inline-block text-white font-bold text-4xl bg-[#005EA7] px-5 py-3 rounded-md">
+          <span className="inline-block text-white font-bold text-4xl bg-primary px-5 py-3 rounded-md">
             Solusi Sistem Tracking
           </span>
-          <span className="inline-block text-white font-bold text-4xl bg-[#005EA7] px-5 py-3 rounded-md">
+          <span className="inline-block text-white font-bold text-4xl bg-primary px-5 py-3 rounded-md">
             dan Keamanan Kendaraan Anda
           </span>
         </div>
