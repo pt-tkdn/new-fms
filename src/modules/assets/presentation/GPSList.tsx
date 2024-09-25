@@ -1,26 +1,26 @@
+import { Button } from "#/shared/components/ui/button";
 import {
   Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
   TableHeader,
   TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
 } from "#/shared/components/ui/table";
 import dayjs from "dayjs";
 
 const recentEvents = [
   {
-    time: dayjs().format("DD MMM YYYY, HH:mm:ss"),
+    imei: dayjs().unix(),
     vehicle: "Toyota Avanza",
     vehicleCode: "AVZ-001",
     driverName: "John Doe",
     event: "Speeding",
   },
   {
-    time: dayjs()
+    imei: dayjs()
       .add(Math.ceil(Math.random() * 10), "minutes")
-      .format("DD MMM YYYY, HH:mm:ss"),
+      .unix(),
     vehicle: "Honda Jazz",
     vehicleCode: "JAZ-001",
     driverName: "Jane Doe",
@@ -28,9 +28,9 @@ const recentEvents = [
   },
 
   {
-    time: dayjs()
+    imei: dayjs()
       .add(Math.ceil(Math.random() * 10), "minutes")
-      .format("DD MMM YYYY, HH:mm:ss"),
+      .unix(),
     vehicle: "Honda Civic",
     vehicleCode: "CVC-001",
     driverName: "Jane Doe",
@@ -38,51 +38,48 @@ const recentEvents = [
   },
 
   {
-    time: dayjs()
+    imei: dayjs()
       .add(Math.ceil(Math.random() * 10), "minutes")
-      .format("DD MMM YYYY, HH:mm:ss"),
+      .unix(),
     vehicle: "Mitsubishi Pajero",
     vehicleCode: "PJR-199",
     driverName: "Mike Doe",
     event: "Driver Fatigue",
   },
   {
-    time: dayjs()
+    imei: dayjs()
       .add(Math.ceil(Math.random() * 10), "minutes")
-      .format("DD MMM YYYY, HH:mm:ss"),
+      .unix(),
     vehicle: "Toyota Alphard",
     vehicleCode: "ALP-001",
     driverName: "Rachel Doe",
     event: "Speeding",
   },
 ];
-
-export default function RecentEvents() {
+const GPSList = () => {
   return (
-    <section className="card p-5 space-y-4">
-      <h2 className="text-xl font-bold">Recent Events</h2>
+    <section className="flex card p-5 space-y-4">
       <Table>
-        <TableCaption>A list of recent events</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-48">Time</TableHead>
-            <TableHead>Vehicle</TableHead>
-            <TableHead>Vehicle Code</TableHead>
-            <TableHead>Driver</TableHead>
-            <TableHead>Event</TableHead>
-            <TableHead>Location</TableHead>
+            <TableHead>Sim Card</TableHead>
+            <TableHead>Serial Number</TableHead>
+            <TableHead>Km / L</TableHead>
+            <TableHead>Fuel Price / L</TableHead>
+            <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {recentEvents.map((event) => {
             return (
-              <TableRow key={event.time}>
-                <TableCell>{event.time}</TableCell>
+              <TableRow key={event.imei}>
+                <TableCell>{event.imei}</TableCell>
                 <TableCell>{event.vehicle}</TableCell>
                 <TableCell>{event.vehicleCode}</TableCell>
                 <TableCell>{event.driverName}</TableCell>
                 <TableCell>{event.event}</TableCell>
-                <TableCell className="text-blue-400">Unknown</TableCell>
+                <TableCell className="text-blue-500">TODO</TableCell>
               </TableRow>
             );
           })}
@@ -90,4 +87,6 @@ export default function RecentEvents() {
       </Table>
     </section>
   );
-}
+};
+
+export default GPSList;

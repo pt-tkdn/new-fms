@@ -16,7 +16,34 @@ import { iconPaths } from "#/shared/assets/icon_paths";
 import Image from "next/image";
 import Link from "next/link";
 
-const ASSETS_SUB_MENU = ["GPS", "SIM Cards", "Vehicle", "Driver", "iButton"];
+export interface SubMenu {
+  title: string;
+  routeName: __next_route_internal_types__.RouteImpl<string>;
+}
+
+const ASSETS_SUB_MENU: SubMenu[] = [
+  {
+    routeName: "/assets/gps",
+    title: "GPS",
+  },
+  {
+    routeName: "/",
+    title: "SIM Cards",
+  },
+  {
+    routeName: "/",
+    title: "Vehicle",
+  },
+  {
+    routeName: "/",
+    title: "Driver",
+  },
+  {
+    routeName: "/",
+    title: "iButton",
+  },
+];
+
 const CONFIGURATION_SUB_MENU = [
   "Stops",
   "Routes",
@@ -53,12 +80,15 @@ const SideBarMenu = () => {
       <Accordion collapsible asChild type="single">
         <menu className="border-y ">
           <ul className="space-y-1">
-            <li className="group p-4 cursor-pointer hover:bg-primary rounded-lg hover:text-white flex flex-row items-center justify-between transition-colors">
+            <Link
+              href="/"
+              className="group p-4 cursor-pointer hover:bg-primary rounded-lg hover:text-white flex flex-row items-center justify-between transition-colors"
+            >
               <span className="flex flex-row gap-x-5 group-hover:text-white font-semibold text-base">
                 <IcSpeedometer className="fill-primary group-hover:fill-white" />
                 Overview
               </span>
-            </li>
+            </Link>
 
             <AccordionItem asChild className="border-none" value="assets">
               <li>
@@ -77,7 +107,13 @@ const SideBarMenu = () => {
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col px-4 gap-y-2">
                   {ASSETS_SUB_MENU.map((item) => (
-                    <span key={item}>{item}</span>
+                    <Link
+                      className="hover:text-primary"
+                      href={item.routeName}
+                      key={item.title}
+                    >
+                      {item.title}
+                    </Link>
                   ))}
                 </AccordionContent>
               </li>

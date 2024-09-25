@@ -31,5 +31,5 @@ body {
 }
 
 .card {
-  @apply bg-white rounded-lg shadow-sm;
+  @apply bg-white rounded-3xl shadow-sm;
 }
