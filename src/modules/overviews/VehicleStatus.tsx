@@ -5,6 +5,19 @@ const VehicleStatus: React.FC = () => {
   return (
     <section>
       <ul className="flex flex-row justify-between">
+        <li className="card flex flex-row justify-between p-4 w-[204px] h-32 hover:bg-blue-50 transition-colors">
+          <div className="flex flex-col h-full justify-between">
+            <span className="text-3xl font-bold">112</span>
+            <span className="opacity-50">Total Unit</span>
+          </div>
+          <div className="flex w-14 h-14 rounded-3xl bg-blue-100">
+            <Image
+              alt="Maintenance"
+              src={iconPaths.icVehicle}
+              className="w-6 h-6 object-contain my-auto mx-auto"
+            />
+          </div>
+        </li>
         <li className="card flex flex-row justify-between p-4 w-[204px] h-32 hover:bg-indigo-50 transition-colors">
           <div className="flex flex-col h-full justify-between">
             <span className="text-3xl font-bold">12</span>

@@ -21,7 +21,7 @@ const LastUpdates = () => {
         {TEMP_UPDATES.map((update) => {
           return (
             <div className="flex gap-x-2" key={update.id}>
-              <button className="flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200/90 transition-colors text-primary">
+              <button className="flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200/90 transition-colors text-blue-400">
                 <Info size={16} />
               </button>
               <div className="flex flex-col gap-y-1">
