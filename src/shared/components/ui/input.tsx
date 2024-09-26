@@ -8,8 +8,7 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
-    const { prefix, suffix } = props;
+  ({ className, type, prefix, suffix, ...props }, ref) => {
     return (
       <div
         className={cn(
