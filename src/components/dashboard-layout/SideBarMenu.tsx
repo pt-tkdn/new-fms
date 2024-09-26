@@ -17,30 +17,30 @@ import Image from "next/image";
 import Link from "next/link";
 
 export interface SubMenu {
-  title: string;
+  name: string;
   routeName: __next_route_internal_types__.RouteImpl<string>;
 }
 
 const ASSETS_SUB_MENU: SubMenu[] = [
   {
     routeName: "/assets/gps",
-    title: "GPS",
+    name: "GPS",
   },
   {
     routeName: "/",
-    title: "SIM Cards",
+    name: "SIM Cards",
   },
   {
     routeName: "/",
-    title: "Vehicle",
+    name: "Vehicle",
   },
   {
     routeName: "/",
-    title: "Driver",
+    name: "Driver",
   },
   {
     routeName: "/",
-    title: "iButton",
+    name: "iButton",
   },
 ];
 
@@ -110,9 +110,9 @@ const SideBarMenu = () => {
                     <Link
                       className="hover:text-primary"
                       href={item.routeName}
-                      key={item.title}
+                      key={item.name}
                     >
-                      {item.title}
+                      {item.name}
                     </Link>
                   ))}
                 </AccordionContent>

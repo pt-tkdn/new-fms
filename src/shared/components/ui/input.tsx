@@ -2,20 +2,30 @@ import * as React from "react";
 
 import { cn } from "#/shared/lib/utils";
 
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+};
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
+    const { prefix, suffix } = props;
     return (
-      <input
-        type={type}
+      <div
         className={cn(
-          "block w-full rounded-md border border-slate-200 bg-white px-2 py-3 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-primary placeholder:text-slate-500 focus:ring-primary focus:outline-none focus:ring-offset-1 focus:ring-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50",
+          "group flex w-full h-11 gap-x-4 bg-white items-center border border-slate-200 rounded-md px-4 focus-within:text-primary focus-within:ring-2 focus-within:outline-none focus-within:ring-offset-0 focus-within:ring-primary",
           className
         )}
-        ref={ref}
-        {...props}
-      />
+      >
+        {prefix ? prefix : null}
+        <input
+          type={type}
+          className="w-full outline-none bg-inherit text-slate-900"
+          ref={ref}
+          {...props}
+        />
+        {suffix ? suffix : null}
+      </div>
     );
   }
 );

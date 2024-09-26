@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.guess();
+
 import "normalize.css";
 import "./build.css";
 import "./globals.css";
