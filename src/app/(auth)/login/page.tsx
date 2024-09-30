@@ -1,4 +1,4 @@
-import LoginForm from "#/components/login/LoginForm";
+import LoginForm from "#/modules/user/presentation/LoginForm";
 import { iconPaths } from "#/shared/assets/icon_paths";
 import Image from "next/image";
 
