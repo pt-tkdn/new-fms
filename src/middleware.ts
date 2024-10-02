@@ -5,13 +5,13 @@ import { cookies } from "next/headers";
 const publicRoutes = ["/login", "/signup", "/"];
 
 export default async function middleware(req: NextRequest) {
-  console.log("Current URL", req.nextUrl.pathname);
+  console.log("Middleware running for path", req.nextUrl.pathname);
   // 2. Check if the current route is protected or public
   const path = req.nextUrl.pathname;
   const isPublicRoute = publicRoutes.includes(path);
 
   // 3. Decrypt the session from the cookie
-  const cookie = cookies().get("session")?.value;
+  const cookie = cookies().get("user-session")?.value;
   // const session = await decrypt(cookie);
 
   // 4. Redirect to /login if the user is not authenticated
