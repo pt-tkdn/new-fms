@@ -11,6 +11,7 @@ export const mapUserResponseToEntity = (res: UserDto.LoginResponse): User => {
       };
     }),
     email: res.data.user.email,
+    accessToken: res.data.token,
     id: res.data.user.id,
     lastLogin: res.data.user.last_login,
     name: res.data.user.name,

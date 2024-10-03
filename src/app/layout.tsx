@@ -32,9 +32,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased ${ns.variable} font-sans `}>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <RootComponent>{children}</RootComponent>
         <Toaster />
       </body>
     </html>
+  );
+}
+
+function RootComponent({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <ReactQueryProvider>{children}</ReactQueryProvider>
+    </>
   );
 }

@@ -15,6 +15,8 @@ import { ChevronDown, Power } from "lucide-react";
 import { iconPaths } from "#/shared/assets/icon_paths";
 import Image from "next/image";
 import Link from "next/link";
+import { logout } from "#/modules/user/application/actions/session";
+import LogoutButton from "#/modules/user/presentation/LogoutButton";
 
 export interface SubMenu {
   name: string;
@@ -214,17 +216,7 @@ const SideBarMenu = () => {
         </menu>
       </Accordion>
 
-      <Link
-        href="/login"
-        className="group p-4 cursor-pointer hover:bg-primary rounded-lg hover:text-white flex flex-row items-center justify-between transition-colors"
-      >
-        <span className="flex flex-row items-center gap-x-5 group-hover:text-white font-semibold text-base">
-          <span className="flex items-center justify-center h-6 w-6 text-white bg-primary group-hover:bg-white group-hover:text-primary rounded-full">
-            <Power size={14} />
-          </span>
-          Logout
-        </span>
-      </Link>
+      <LogoutButton />
     </aside>
   );
 };

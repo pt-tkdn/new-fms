@@ -1,7 +1,7 @@
-import LastUpdates from "#/modules/overviews/LastUpdates";
-import LiveMap from "#/modules/overviews/LiveMap";
-import RecentEvents from "#/modules/overviews/RecentEvents";
-import VehicleStatus from "#/modules/overviews/VehicleStatus";
+import LastUpdates from "#/modules/overviews/presentation/LastUpdates";
+import LiveMap from "#/modules/overviews/presentation/LiveMap";
+import RecentEvents from "#/modules/overviews/presentation/RecentEvents";
+import VehicleStatus from "#/modules/overviews/presentation/VehicleStatus";
 import dayjs from "dayjs";
 
 export default function OverviewPage() {

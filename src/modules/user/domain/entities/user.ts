@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const user = z.object({
   id: z.number(),
+  accessToken: z.string(),
   name: z.string(),
   email: z.string(),
   phone: z.string(),
@@ -18,10 +19,8 @@ const user = z.object({
   account: z.null().optional(),
 });
 
-type RawUser = z.infer<typeof user>;
-
-export const createUser = (data: RawUser) => {
+export const createUser = (data: User) => {
   return user.parse(data);
 };
 
-export type User = ReturnType<typeof createUser>;
+export type User = z.infer<typeof user>;

@@ -1,10 +1,7 @@
 "use client";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "#/shared/components/ui/avatar";
+import ProfileHeader from "#/modules/user/presentation/ProfileHeader";
+
 import { Settings, BellDot } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -39,18 +36,7 @@ const Header = () => {
         <button className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 hover:bg-slate-300/90 transition-colors text-pink-500">
           <BellDot size={18} />
         </button>
-
-        <button className="flex gap-x-5">
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-
-          <div className="flex flex-col items-start">
-            <span className="text-sm font-bold text-slate-800">Josh Shad</span>
-            <span className="text-xs font-normal text-slate-700">Admin</span>
-          </div>
-        </button>
+        <ProfileHeader />
       </div>
     </div>
   );
