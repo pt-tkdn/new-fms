@@ -10,7 +10,7 @@ const LastUpdates = () => {
       <h1 className="block text-xl font-bold sticky z-[1] pt-5 top-0 h-12">
         Last Updates
       </h1>
-      <div className="block h-[calc(100%-4rem)] space-y-5">
+      <div className="block h-[calc(100%-4.5rem)] space-y-5">
         <LastUpdatesList />
       </div>
     </div>

@@ -28,6 +28,10 @@ body {
     --background: #FBF8F6;
     --radius: 0.5rem;
   }
+  body {
+    overflow: initial;
+    overscroll-behavior: none;
+  }
 }
 
 .card {

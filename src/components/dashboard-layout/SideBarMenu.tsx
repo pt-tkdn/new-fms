@@ -80,7 +80,7 @@ const SideBarMenu = () => {
         alt="FMS Logo"
       />
       <Accordion collapsible asChild type="single">
-        <menu className="border-y ">
+        <menu className="block border-y ">
           <ul className="space-y-1">
             <Link
               href="/"
