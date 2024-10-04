@@ -4,6 +4,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "#/shared/components/ui/avatar";
+import { Skeleton } from "#/shared/components/ui/skeleton";
 
 const ProfileHeader: React.FC = () => {
   const { name, status } = useUserSelector((s) => ({
@@ -46,4 +47,17 @@ const ProfileHeader: React.FC = () => {
   );
 };
 
-export default ProfileHeader;
+const ProfileHeaderSkeleton: React.FC = () => {
+  return (
+    <div className="flex gap-x-5">
+      <Skeleton className="w-10 h-10 rounded-full" />
+
+      <div className="flex flex-col items-start gap-y-2">
+        <Skeleton className="w-16 h-4" />
+        <Skeleton className="w-10 h-4" />
+      </div>
+    </div>
+  );
+};
+
+export { ProfileHeader, ProfileHeaderSkeleton };

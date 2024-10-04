@@ -1,5 +1,6 @@
 "use client";
 import { useUserSelector } from "#/modules/user/application/hooks/useUserStore";
+import { Skeleton } from "#/shared/components/ui/skeleton";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 
@@ -25,4 +26,14 @@ const Greeting = () => {
   );
 };
 
+const GreetingSkeleton = () => {
+  return (
+    <div className="flex justify-between items-center">
+      <Skeleton className="w-40 h-8 bg-gray-200 rounded-lg animate-pulse" />
+      <Skeleton className="w-40 h-8 bg-gray-200 rounded-lg animate-pulse" />
+    </div>
+  );
+};
+
+export { GreetingSkeleton };
 export default Greeting;

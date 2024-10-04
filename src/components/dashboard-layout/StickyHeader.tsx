@@ -1,9 +1,20 @@
 "use client";
 
-import ProfileHeader from "#/modules/user/presentation/ProfileHeader";
-
+import { ProfileHeaderSkeleton } from "#/modules/user/presentation/ProfileHeader";
 import { Settings, BellDot } from "lucide-react";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
+
+const ProfileHeader = dynamic(
+  () =>
+    import("#/modules/user/presentation/ProfileHeader").then(
+      (module) => module.ProfileHeader
+    ),
+  {
+    ssr: false,
+    loading: () => <ProfileHeaderSkeleton />,
+  }
+);
 
 const Header = () => {
   const path = usePathname();
