@@ -11,11 +11,10 @@ import IcTruckPoint from "#/shared/assets/icons/ic_truckpoint.svg";
 import IcRoad from "#/shared/assets/icons/ic_road.svg";
 import IcMonitoring from "#/shared/assets/icons/ic_monitory.svg";
 import IcReports from "#/shared/assets/icons/ic_reports.svg";
-import { ChevronDown, Power } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { iconPaths } from "#/shared/assets/icon_paths";
 import Image from "next/image";
 import Link from "next/link";
-import { logout } from "#/modules/user/application/actions/session";
 import LogoutButton from "#/modules/user/presentation/LogoutButton";
 
 export interface SubMenu {

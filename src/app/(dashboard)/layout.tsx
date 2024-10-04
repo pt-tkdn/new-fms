@@ -1,6 +1,13 @@
-import Header from "#/components/dashboard-layout/StickyHeader";
-import SideBarMenu from "#/components/dashboard-layout/SideBarMenu";
 import { PropsWithChildren } from "react";
+import dynamic from "next/dynamic";
+import SideBarMenu from "#/components/dashboard-layout/SideBarMenu";
+
+const Header = dynamic(
+  () => import("#/components/dashboard-layout/StickyHeader"),
+  {
+    ssr: false,
+  }
+);
 
 const DashboardLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (

@@ -1,9 +1,13 @@
-import Greeting from "#/modules/overviews/presentation/Greeting";
 import LastUpdates from "#/modules/overviews/presentation/LastUpdates";
 import LiveMap from "#/modules/overviews/presentation/LiveMap";
 import RecentEvents from "#/modules/overviews/presentation/RecentEvents";
 import VehicleStatus from "#/modules/overviews/presentation/VehicleStatus";
-import dayjs from "dayjs";
+import dynamic from "next/dynamic";
+
+const Greeting = dynamic(
+  () => import("#/modules/overviews/presentation/Greeting"),
+  { ssr: false }
+);
 
 export default function OverviewPage() {
   return (
