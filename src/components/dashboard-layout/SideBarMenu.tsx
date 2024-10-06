@@ -28,7 +28,7 @@ const ASSETS_SUB_MENU: SubMenu[] = [
     name: "GPS",
   },
   {
-    routeName: "/",
+    routeName: "/assets/sim-cards",
     name: "SIM Cards",
   },
   {

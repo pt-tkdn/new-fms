@@ -30,3 +30,19 @@ export const mapGPSResponseToEntity = (
     });
   });
 };
+
+export const mapSIMCardResponseToEntity = (
+  res: AssetsApiDto.SIMCardByAccountIDResponse
+) => {
+  return res.data.map((simCard) => {
+    return createSimCard({
+      accountId: simCard.account_id,
+      gsmNo: simCard.gsm_no,
+      id: simCard.id,
+      imsi: simCard.imsi,
+      msidn: simCard.msidn,
+      operator: simCard.operator,
+      status: simCard.status,
+    });
+  });
+};

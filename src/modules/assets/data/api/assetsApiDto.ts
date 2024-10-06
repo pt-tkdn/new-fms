@@ -2,6 +2,7 @@ import { BaseHttpResponse } from "#/shared/utils/httpClient";
 
 export namespace AssetsApiDto {
   export type GPSByAccountIDResponse = BaseHttpResponse<AccountResponse[]>;
+  export type SIMCardByAccountIDResponse = BaseHttpResponse<SimCard[]>;
 
   export interface AccountResponse {
     id: number;
