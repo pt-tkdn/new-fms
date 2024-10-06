@@ -1,7 +1,7 @@
 "use client";
 
-import { useSIMCardsQuery } from "#/modules/application/hooks/useSIMCardsQuery";
-import { SimCard } from "#/modules/assets/domain/entities/simCard";
+import { useVehiclesQuery } from "#/modules/application/hooks/useVehiclesQuery";
+import { Vehicle } from "#/modules/assets/domain/entities/vehicle";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 import {
@@ -24,39 +24,64 @@ import {
 } from "@tanstack/react-table";
 import { useMemo } from "react";
 
-const columnHelper = createColumnHelper<SimCard>();
+const columnHelper = createColumnHelper<Vehicle>();
 
 const defaultColumns = [
-  columnHelper.accessor("gsmNo", {
-    id: "gsmNo",
-    header: () => "GSM No",
+  columnHelper.accessor("vehicleNo", {
+    id: "vehicleNo",
+    header: () => "Vehicle No",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("operator", {
-    id: "operator",
-    header: () => "Operator",
+  columnHelper.accessor("vehicleCode", {
+    id: "vehicleCode",
+    header: () => "Vehicle Code",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("msidn", {
-    id: "msidn",
-    header: () => "MSIDN",
+  columnHelper.accessor("stnkNumber", {
+    id: "stnkNumber",
+    header: () => "STNK No",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("imsi", {
-    id: "IMSI No",
-    header: () => "IMSI No",
+  columnHelper.accessor("machineNo", {
+    id: "machineNo",
+    header: () => "Machine No",
     cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor("chassisNo", {
+    id: "chassisNo",
+    header: () => "Chasis No",
+    cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
+  }),
+
+  columnHelper.accessor("capacity", {
+    id: "capacity",
+    header: () => "Capacity (cc)",
+    cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
+  }),
+
+  columnHelper.accessor("gps.id", {
+    id: "gps.id",
+    header: () => "GPS",
+    cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor("gps.simCard", {
+    id: "gps.simCard",
+    header: () => "SIM Card",
+    cell: (info) => info.getValue()?.id,
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor("status", {
     id: "status",
     header: () => "Status",
     cell: (info) =>
-      info.getValue().substring(0, 1).toUpperCase() +
-      info.getValue().substring(1),
+      info.getValue().charAt(0).toUpperCase() + info.getValue().substring(1),
     footer: (info) => info.column.id,
   }),
   columnHelper.display({
@@ -66,11 +91,11 @@ const defaultColumns = [
   }),
 ];
 
-const fallbackData: SimCard[] = Array(10).fill({} as unknown as SimCard);
+const fallbackData: Vehicle[] = Array(10).fill({} as unknown as Vehicle);
 
-const SIMCardsTable = () => {
+const VehiclesTable = () => {
   const account = useAccountState();
-  const { data, isFetching } = useSIMCardsQuery(account?.id);
+  const { data, isFetching } = useVehiclesQuery(account?.id);
 
   const rowsData = useMemo(() => {
     if (isFetching) return fallbackData;
@@ -92,9 +117,9 @@ const SIMCardsTable = () => {
   const table = useReactTable({
     columns: columns,
     data: rowsData,
-    getCoreRowModel: getCoreRowModel<SimCard>(),
-    getFilteredRowModel: getFilteredRowModel<SimCard>(),
-    getPaginationRowModel: getPaginationRowModel<SimCard>(),
+    getCoreRowModel: getCoreRowModel<Vehicle>(),
+    getFilteredRowModel: getFilteredRowModel<Vehicle>(),
+    getPaginationRowModel: getPaginationRowModel<Vehicle>(),
   });
 
   return (
@@ -167,4 +192,4 @@ const SIMCardsTable = () => {
   );
 };
 
-export default SIMCardsTable;
+export default VehiclesTable;

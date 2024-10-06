@@ -18,7 +18,7 @@ const TablePagination: React.FC<TablePaginationProps> = ({
   canPrevious,
   canNext,
 }) => {
-  const startRange = currentPage * perPage + 1;
+  const startRange = total === 0 ? 0 : currentPage * perPage + 1;
   const endRange = Math.min((currentPage + 1) * perPage, total);
 
   return (

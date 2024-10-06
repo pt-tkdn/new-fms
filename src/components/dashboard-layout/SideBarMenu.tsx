@@ -32,7 +32,7 @@ const ASSETS_SUB_MENU: SubMenu[] = [
     name: "SIM Cards",
   },
   {
-    routeName: "/",
+    routeName: "/assets/vehicle",
     name: "Vehicle",
   },
   {

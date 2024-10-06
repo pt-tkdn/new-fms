@@ -1,3 +1,4 @@
+import { activeStatus } from "../valueObjects/activeStatus";
 import { z } from "zod";
 
 export const simCard = z.object({
@@ -7,7 +8,7 @@ export const simCard = z.object({
   operator: z.string(),
   msidn: z.string(),
   imsi: z.string(),
-  status: z.number(),
+  status: activeStatus,
 });
 
 export type SimCard = z.infer<typeof simCard>;

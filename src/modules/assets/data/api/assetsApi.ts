@@ -1,6 +1,7 @@
 import {
   mapGPSResponseToEntity,
   mapSIMCardResponseToEntity,
+  mapVehicleResponseToEntity,
 } from "#/modules/assets/data/api/assetsMapper";
 import httpClient from "#/shared/utils/httpClient";
 
@@ -16,4 +17,11 @@ export const getSIMCardByAccountId = async (accountId: number) => {
     account_id: accountId,
   });
   return mapSIMCardResponseToEntity(response.data);
+};
+
+export const getVehicleByAccountId = async (accountId: number) => {
+  const response = await httpClient.post(`/vehicle_by_account`, {
+    account_id: accountId,
+  });
+  return mapVehicleResponseToEntity(response.data);
 };
