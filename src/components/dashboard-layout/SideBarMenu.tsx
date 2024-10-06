@@ -36,7 +36,7 @@ const ASSETS_SUB_MENU: SubMenu[] = [
     name: "Vehicle",
   },
   {
-    routeName: "/",
+    routeName: "/assets/driver",
     name: "Driver",
   },
   {

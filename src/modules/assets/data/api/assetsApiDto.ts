@@ -3,6 +3,8 @@ import { BaseHttpResponse } from "#/shared/utils/httpClient";
 export namespace AssetsApiDto {
   export type GPSByAccountIDResponse = BaseHttpResponse<AccountResponse[]>;
   export type SIMCardByAccountIDResponse = BaseHttpResponse<SimCard[]>;
+  export type VehicleByAccountIDResponse = BaseHttpResponse<Vehicle[]>;
+  export type DriverByAccountIDResponse = BaseHttpResponse<DriverResponse[]>;
 
   export interface AccountResponse {
     id: number;
@@ -35,11 +37,6 @@ export namespace AssetsApiDto {
     updated_by: number;
     created_at: Date;
     updated_at: Date;
-  }
-
-  export interface VehicleResponse {
-    error: null;
-    data: Vehicle[];
   }
 
   export interface Vehicle {
@@ -131,6 +128,40 @@ export namespace AssetsApiDto {
     operator: string;
     msidn: string;
     imsi: string;
+    status: number;
+    created_by: number;
+    updated_by: number;
+    created_at: Date;
+    updated_at: Date;
+  }
+
+  export interface DriverResponse {
+    id: number;
+    account_id: number;
+    name: string;
+    driver_code: string;
+    license_number: string;
+    license_number_date: string;
+    license_number_type: string;
+    phone_number: string;
+    gender: string;
+    address: string;
+    ktp_number: string;
+    status: number;
+    pic_url: string;
+    created_by: number;
+    updated_by: number;
+    created_at: Date;
+    updated_at: Date;
+    ibutton_id: number;
+    account: Account;
+    ibutton: IButton;
+  }
+
+  export interface IButton {
+    id: number;
+    account_id: number;
+    ibutton_no: string;
     status: number;
     created_by: number;
     updated_by: number;

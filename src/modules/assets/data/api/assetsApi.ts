@@ -1,4 +1,5 @@
 import {
+  mapDriverResponseToEntity,
   mapGPSResponseToEntity,
   mapSIMCardResponseToEntity,
   mapVehicleResponseToEntity,
@@ -24,4 +25,11 @@ export const getVehicleByAccountId = async (accountId: number) => {
     account_id: accountId,
   });
   return mapVehicleResponseToEntity(response.data);
+};
+
+export const getDriversByAccountId = async (accountId: number) => {
+  const response = await httpClient.post(`/driver_by_account`, {
+    account_id: accountId,
+  });
+  return mapDriverResponseToEntity(response.data);
 };

@@ -1,5 +1,7 @@
 import { AssetsApiDto } from "#/modules/assets/data/api/assetsApiDto";
+import { createDriver } from "#/modules/assets/domain/entities/driver";
 import { createGPS, GPS } from "#/modules/assets/domain/entities/gps";
+import { createIButton } from "#/modules/assets/domain/entities/iButton";
 import { createSimCard } from "#/modules/assets/domain/entities/simCard";
 import { createVehicle } from "#/modules/assets/domain/entities/vehicle";
 import * as activeStatus from "#/modules/assets/domain/valueObjects/activeStatus";
@@ -50,7 +52,7 @@ export const mapSIMCardResponseToEntity = (
 };
 
 export const mapVehicleResponseToEntity = (
-  res: AssetsApiDto.VehicleResponse
+  res: AssetsApiDto.VehicleByAccountIDResponse
 ) => {
   return res.data.map((vehicle) => {
     return createVehicle({
@@ -86,6 +88,32 @@ export const mapVehicleResponseToEntity = (
       chassisNo: vehicle.chassis_no,
       machineNo: vehicle.machine_no,
       stnkNumber: vehicle.stnk_number,
+    });
+  });
+};
+
+export const mapDriverResponseToEntity = (
+  res: AssetsApiDto.DriverByAccountIDResponse
+) => {
+  return res.data.map((driver) => {
+    return createDriver({
+      address: driver.address,
+      id: driver.id,
+      name: driver.name,
+      phone: driver.phone_number,
+      status: activeStatus.fromNumber(driver.status),
+      code: driver.driver_code,
+      gender: driver.gender,
+      ktpNumber: driver.ktp_number,
+      licenseExpired: driver.license_number_date,
+      licenseNumber: driver.license_number,
+      licenseType: driver.license_number_type,
+      iButton: createIButton({
+        iButtonNo: driver.ibutton.ibutton_no,
+        id: driver.ibutton.id,
+        status: activeStatus.fromNumber(driver.ibutton.status),
+      }),
+      // iButton
     });
   });
 };

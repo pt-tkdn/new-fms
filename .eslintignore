@@ -3,3 +3,4 @@ next.config.js
 next-env.d.ts
 postcss.config.*
 node_modules/
+.next/

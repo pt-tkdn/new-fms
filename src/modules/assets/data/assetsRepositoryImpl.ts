@@ -1,4 +1,5 @@
 import {
+  getDriversByAccountId,
   getGpsByAccountId,
   getSIMCardByAccountId,
   getVehicleByAccountId,
@@ -15,6 +16,9 @@ const assetsRepositoryImpl = (): AssetsRepository => {
     },
     getVehicleByAccountId: (accountId) => {
       return getVehicleByAccountId(accountId);
+    },
+    getDriversByAccountId: (accountId) => {
+      return getDriversByAccountId(accountId);
     },
   };
 };

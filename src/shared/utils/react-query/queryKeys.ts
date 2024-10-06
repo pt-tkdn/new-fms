@@ -3,4 +3,5 @@ export const queryKeys = {
   accounts: ["accounts"],
   gpsByAccountId: (accountId: number) => ["gps", accountId],
   simCardsByAccountId: (accountId: number) => ["simCards", accountId],
+  driversByAccountId: (accountId: number) => ["drivers", accountId],
 };

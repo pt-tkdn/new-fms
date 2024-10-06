@@ -1,6 +1,6 @@
 "use client";
 
-import VehiclesTable from "#/modules/assets/presentation/VehiclesTable";
+import DriversTable from "#/modules/assets/presentation/DriversTable";
 import AccountProvider from "#/modules/user/application/context/AccountProvider";
 import SelectAccount from "#/modules/user/presentation/SelectAccount";
 import { Button } from "#/shared/components/ui/button";
@@ -22,7 +22,7 @@ const VehiclePage = () => {
           </Button>
         </div>
 
-        <VehiclesTable />
+        <DriversTable />
       </AccountProvider>
     </main>
   );
