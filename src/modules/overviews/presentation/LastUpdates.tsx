@@ -6,11 +6,11 @@ import { Info } from "lucide-react";
 
 const LastUpdates = () => {
   return (
-    <div className="sticky top-20 w-72 h-96 px-5 pb-5 space-y-5 card overflow-auto">
-      <h1 className="block text-xl font-bold sticky z-[1] pt-5 top-0 h-12">
+    <div className="flex flex-col sticky top-20 w-72 h-96 space-y-5 card">
+      <h1 className="block text-xl font-bold mx-5 z-[1] pt-5 top-0 h-12">
         Last Updates
       </h1>
-      <div className="block h-[calc(100%-4.5rem)] space-y-5">
+      <div className="flex flex-grow w-full px-5 pb-5 space-y-5 overflow-auto ">
         <LastUpdatesList />
       </div>
     </div>
@@ -22,7 +22,7 @@ const LastUpdatesList = () => {
 
   if (isSuccess && !data?.recentEvents.length) {
     return (
-      <div className="flex flex-grow justify-center items-center w-full h-full">
+      <div className="flex flex-1 items-center justify-center">
         <span className="text-lg font-semibold text-gray-400">
           No updates available
         </span>
@@ -32,7 +32,7 @@ const LastUpdatesList = () => {
 
   if (isPending) {
     return (
-      <div className="space-y-5">
+      <div className="flex flex-col flex-1 space-y-5">
         {Array.from({ length: 6 }, (_, i) => i).map((_, index) => {
           return (
             <div className="flex gap-x-2" key={index}>

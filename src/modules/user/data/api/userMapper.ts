@@ -1,4 +1,5 @@
 import { UserDto } from "#/modules/user/data/api/userApiDto";
+import { Account, createAccount } from "#/modules/user/domain/entities/account";
 import { createUser, User } from "#/modules/user/domain/entities/user";
 
 export const mapUserResponseToEntity = (res: UserDto.LoginResponse): User => {
@@ -20,4 +21,15 @@ export const mapUserResponseToEntity = (res: UserDto.LoginResponse): User => {
     type: res.data.user.type,
     account: null,
   });
+};
+
+export const mapAccountsResponseToEntity = (
+  res: UserDto.AccountResponse
+): Account[] => {
+  return res.data.map((account) =>
+    createAccount({
+      name: account.account_name,
+      id: account.id,
+    })
+  );
 };
