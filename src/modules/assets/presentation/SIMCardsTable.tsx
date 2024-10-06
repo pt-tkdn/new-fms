@@ -53,7 +53,7 @@ const defaultColumns = [
   }),
   columnHelper.accessor("status", {
     id: "status",
-    header: () => "status",
+    header: () => "Status",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
