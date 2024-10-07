@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import assetsRepositoryImpl from "#/modules/assets/data/assetsRepositoryImpl";
 import { queryKeys } from "#/shared/utils/react-query/queryKeys";
 
-export const useVehiclesQuery = (accountId?: number) => {
+export const useIButtonQuery = (accountId?: number) => {
   return useQuery({
     enabled: !!accountId,
-    queryKey: queryKeys.vehiclesByAccountId(accountId ?? 0),
+    queryKey: queryKeys.iButtonsByAccountId(accountId ?? 0),
     queryFn: async () => {
-      return assetsRepositoryImpl.getVehicleByAccountId(accountId ?? 0);
+      return assetsRepositoryImpl.getIButtonByAccountId(accountId ?? 0);
     },
   });
 };

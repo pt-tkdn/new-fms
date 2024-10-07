@@ -4,4 +4,6 @@ export const queryKeys = {
   gpsByAccountId: (accountId: number) => ["gps", accountId],
   simCardsByAccountId: (accountId: number) => ["simCards", accountId],
   driversByAccountId: (accountId: number) => ["drivers", accountId],
+  vehiclesByAccountId: (accountId: number) => ["vehicles", accountId],
+  iButtonsByAccountId: (accountId: number) => ["iButtons", accountId],
 };

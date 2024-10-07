@@ -113,11 +113,24 @@ export const mapDriverResponseToEntity = (
       licenseNumber: driver.license_number,
       licenseType: driver.license_number_type,
       iButton: createIButton({
-        iButtonNo: driver.ibutton.ibutton_no,
+        no: driver.ibutton.ibutton_no,
         id: driver.ibutton.id,
         status: activeStatus.fromNumber(driver.ibutton.status),
+        driverName: driver.name,
       }),
-      // iButton
+    });
+  });
+};
+
+export const mapIButtonResponseToEntity = (
+  res: AssetsApiDto.IButtonByAccountIDResponse,
+) => {
+  return res.data.map((iButton) => {
+    return createIButton({
+      id: iButton.id,
+      no: iButton.ibutton_no,
+      status: activeStatus.fromNumber(iButton.status),
+      driverName: iButton.driver.name,
     });
   });
 };

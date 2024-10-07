@@ -10,8 +10,8 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
 
-import { useDriverQuery } from "#/modules/application/hooks/useDriverQuery";
-import type { Driver } from "#/modules/assets/domain/entities/driver";
+import { useIButtonQuery } from "#/modules/application/hooks/useIButtonQuery";
+import type { IButton } from "#/modules/assets/domain/entities/iButton";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 import {
@@ -28,45 +28,27 @@ import TablePagination from "#/shared/core/presentation/TablePagination";
 import { useToast } from "#/shared/hooks/use-toast";
 import * as exportData from "#/shared/utils/exportData";
 
-const columnHelper = createColumnHelper<Driver>();
+const columnHelper = createColumnHelper<IButton>();
 
 const defaultColumns = [
-  columnHelper.accessor("name", {
-    id: "name",
-    header: () => "Name",
-    cell: (info) => info.getValue(),
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor("code", {
-    id: "code",
-    header: () => "Driver Code",
-    cell: (info) => info.getValue(),
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor("iButton.no", {
-    id: "iButton.no",
+  columnHelper.accessor("no", {
+    id: "no",
     header: () => "iButton No",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("licenseNumber", {
-    id: "licenseNumber",
-    header: () => "License Number",
+  columnHelper.accessor("driverName", {
+    id: "driverName",
+    header: () => "Driver",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("phone", {
-    id: "phone",
-    header: () => "Phone Number",
-    cell: (info) => info.getValue(),
-    footer: (info) => info.column.id,
-  }),
-
   columnHelper.accessor("status", {
     id: "status",
     header: () => "Status",
     cell: (info) =>
-      info.getValue().charAt(0).toUpperCase() + info.getValue().slice(1),
+      info.getValue().substring(0, 1).toUpperCase() +
+      info.getValue().substring(1),
     footer: (info) => info.column.id,
   }),
   columnHelper.display({
@@ -76,11 +58,11 @@ const defaultColumns = [
   }),
 ];
 
-const fallbackData: Driver[] = Array(10).fill({} as unknown as Driver);
+const fallbackData: IButton[] = Array(10).fill({} as unknown as IButton);
 
-const DriversTable = () => {
+const IButtonTable = () => {
   const account = useAccountState();
-  const { data, isFetching } = useDriverQuery(account?.id);
+  const { data, isFetching } = useIButtonQuery(account?.id);
   const { toast } = useToast();
   const tableRef = useRef<HTMLTableElement>(null);
 
@@ -104,9 +86,9 @@ const DriversTable = () => {
   const table = useReactTable({
     columns: columns,
     data: rowsData,
-    getCoreRowModel: getCoreRowModel<Driver>(),
-    getFilteredRowModel: getFilteredRowModel<Driver>(),
-    getPaginationRowModel: getPaginationRowModel<Driver>(),
+    getCoreRowModel: getCoreRowModel<IButton>(),
+    getFilteredRowModel: getFilteredRowModel<IButton>(),
+    getPaginationRowModel: getPaginationRowModel<IButton>(),
   });
 
   const onExport = (type: ExportType) => {
@@ -119,25 +101,21 @@ const DriversTable = () => {
       });
     }
 
-    const rows = table.getFilteredRowModel().rows.map((row) => {
+    const row = table.getFilteredRowModel().rows.map((row) => {
       return {
-        Name: row.original.name,
-        "Driver Code": row.original.code,
-        "iButton No": row.original.iButton?.no ?? "",
-        "License Number": row.original.licenseNumber ?? "",
-        "Phone Number": row.original.phone ?? "",
-        Status: row.original.status,
+        "iButton No": row.original.no,
+        Driver: row.original.driverName,
+        Status: row.original.status ?? "",
       };
     });
-
     if (type === "Excel") {
-      return exportData.asXLSX(rows, "vehicles");
+      return exportData.asXLSX(row, "iButton");
     }
     if (type === "CSV") {
-      return exportData.asCSV(rows, "vehicles");
+      return exportData.asCSV(row, "iButton");
     }
 
-    return exportData.asPDF(tableRef.current!, "vehicles");
+    return exportData.asPDF(tableRef.current!, "iButton");
   };
 
   return (
@@ -211,4 +189,4 @@ const DriversTable = () => {
   );
 };
 
-export default DriversTable;
+export default IButtonTable;

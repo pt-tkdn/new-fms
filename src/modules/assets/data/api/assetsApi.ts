@@ -2,6 +2,7 @@ import type { AssetsApiDto } from "#/modules/assets/data/api/assetsApiDto";
 import {
   mapDriverResponseToEntity,
   mapGPSResponseToEntity,
+  mapIButtonResponseToEntity,
   mapSIMCardResponseToEntity,
   mapVehicleResponseToEntity,
 } from "#/modules/assets/data/api/assetsMapper";
@@ -48,4 +49,15 @@ export const getDriversByAccountId = async (accountId: number) => {
       },
     );
   return mapDriverResponseToEntity(response.data);
+};
+
+export const getIButtonByAccountId = async (accountId: number) => {
+  const response =
+    await httpClient.post<AssetsApiDto.IButtonByAccountIDResponse>(
+      `/ibutton_by_account`,
+      {
+        account_id: accountId,
+      },
+    );
+  return mapIButtonResponseToEntity(response.data);
 };

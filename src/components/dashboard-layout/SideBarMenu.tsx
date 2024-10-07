@@ -40,7 +40,7 @@ const ASSETS_SUB_MENU: SubMenu[] = [
     name: "Driver",
   },
   {
-    routeName: "/",
+    routeName: "/assets/ibutton",
     name: "iButton",
   },
 ];

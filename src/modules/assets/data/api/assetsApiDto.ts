@@ -1,18 +1,19 @@
 import type { BaseHttpResponse } from "#/shared/utils/httpClient";
 
 export namespace AssetsApiDto {
-  export type GPSByAccountIDResponse = BaseHttpResponse<AccountResponse[]>;
+  export type GPSByAccountIDResponse = BaseHttpResponse<Account[]>;
   export type SIMCardByAccountIDResponse = BaseHttpResponse<SimCard[]>;
   export type VehicleByAccountIDResponse = BaseHttpResponse<Vehicle[]>;
-  export type DriverByAccountIDResponse = BaseHttpResponse<DriverResponse[]>;
+  export type DriverByAccountIDResponse = BaseHttpResponse<Driver[]>;
+  export type IButtonByAccountIDResponse = BaseHttpResponse<IButtonRes[]>;
 
-  export interface AccountResponse {
+  export interface Account {
     id: number;
     imei: string;
     serial_number: string;
     model: string;
-    fuel_quantity: null;
-    fuel_price: null;
+    fuel_quantity: number | null;
+    fuel_price: number | null;
     created_by: number;
     updated_by: number;
     account_id: number;
@@ -135,7 +136,7 @@ export namespace AssetsApiDto {
     updated_at: Date;
   }
 
-  export interface DriverResponse {
+  export interface Driver {
     id: number;
     account_id: number;
     name: string;
@@ -167,5 +168,9 @@ export namespace AssetsApiDto {
     updated_by: number;
     created_at: Date;
     updated_at: Date;
+  }
+
+  export interface IButtonRes extends IButton {
+    driver: Driver;
   }
 }

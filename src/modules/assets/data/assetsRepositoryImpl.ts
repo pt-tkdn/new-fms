@@ -1,6 +1,7 @@
 import {
   getDriversByAccountId,
   getGpsByAccountId,
+  getIButtonByAccountId,
   getSIMCardByAccountId,
   getVehicleByAccountId,
 } from "#/modules/assets/data/api/assetsApi";
@@ -19,6 +20,9 @@ const assetsRepositoryImpl = (): AssetsRepository => {
     },
     getDriversByAccountId: (accountId) => {
       return getDriversByAccountId(accountId);
+    },
+    getIButtonByAccountId: (accountId) => {
+      return getIButtonByAccountId(accountId);
     },
   };
 };

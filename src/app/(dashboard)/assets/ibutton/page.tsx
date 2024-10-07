@@ -3,7 +3,7 @@
 import { Plus } from "lucide-react";
 import * as React from "react";
 
-import SIMCardsTable from "#/modules/assets/presentation/SIMCardsTable";
+import IButtonTable from "#/modules/assets/presentation/IButtonTable";
 import AccountProvider from "#/modules/user/application/context/AccountProvider";
 import SelectAccount from "#/modules/user/presentation/SelectAccount";
 import { Button } from "#/shared/components/ui/button";
@@ -23,7 +23,7 @@ const IButtonPage = () => {
           </Button>
         </div>
 
-        <SIMCardsTable />
+        <IButtonTable />
       </AccountProvider>
     </main>
   );

@@ -3,7 +3,7 @@ import { z } from "zod";
 import { iButton } from "#/modules/assets/domain/entities/iButton";
 import { activeStatus } from "#/modules/assets/domain/valueObjects/activeStatus";
 
-const driver = z.object({
+export const driver = z.object({
   id: z.number(),
   name: z.string(),
   code: z.string(),
