@@ -1,5 +1,3 @@
-"use client";
-
 import { Input } from "#/shared/components/ui/input";
 import {
   Select,
@@ -11,14 +9,18 @@ import {
 } from "#/shared/components/ui/select";
 import { Printer, Search } from "lucide-react";
 
+export type ExportType = "Excel" | "PDF" | "CSV";
+
 export interface TableFilterProps {
   onRowChange?: (row: number) => void;
   onSearchChange?: (search: string) => void;
+  onExport?: (type: ExportType) => void;
 }
 
 const TableFilter: React.FC<TableFilterProps> = ({
   onRowChange,
   onSearchChange,
+  onExport,
 }) => {
   return (
     <div className="flex justify-between items-center">
@@ -37,7 +39,7 @@ const TableFilter: React.FC<TableFilterProps> = ({
           </SelectContent>
         </Select>
 
-        <Select>
+        <Select value="" onValueChange={onExport}>
           <SelectTrigger className="sm:w-44 w-full">
             <SelectValue placeholder="Export Data" />
           </SelectTrigger>

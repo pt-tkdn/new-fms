@@ -12,7 +12,9 @@ import {
   TableBody,
   TableCell,
 } from "#/shared/components/ui/table";
-import TableFilter from "#/shared/core/presentation/TableFilter";
+import TableFilter, {
+  ExportType,
+} from "#/shared/core/presentation/TableFilter";
 import TablePagination from "#/shared/core/presentation/TablePagination";
 import {
   createColumnHelper,
@@ -22,7 +24,9 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
+import { useToast } from "#/shared/hooks/use-toast";
+import * as exportData from "#/shared/utils/exportData";
 
 const columnHelper = createColumnHelper<GPS>();
 
@@ -69,6 +73,8 @@ const fallbackData: GPS[] = Array(10).fill({} as unknown as GPS);
 const GPSTable = () => {
   const account = useAccountState();
   const { data, isFetching } = useGPSQuery(account?.id);
+  const { toast } = useToast();
+  const tableRef = useRef<HTMLTableElement>(null);
 
   const rowsData = useMemo(() => {
     if (isFetching) return fallbackData;
@@ -95,15 +101,46 @@ const GPSTable = () => {
     getPaginationRowModel: getPaginationRowModel<GPS>(),
   });
 
+  const onExport = (type: ExportType) => {
+    if (!table.getFilteredRowModel().rows.length) {
+      return toast({
+        variant: "destructive",
+        title: "No data to export",
+        description: "Please try again",
+        duration: 5000,
+      });
+    }
+
+    const rows = table.getFilteredRowModel().rows.map((row) => {
+      return {
+        IMEI: row.original.imei,
+        "SIM Card": row.original.simCard?.gsmNo ?? "",
+        "Serial Number": row.original.serialNumber,
+        "Km / L": row.original.fuelQuantity ?? "",
+        "Fuel Price / L": row.original.fuelPrice ?? "",
+      };
+    });
+
+    if (type === "Excel") {
+      return exportData.asXLSX(rows, "vehicles");
+    }
+    if (type === "CSV") {
+      return exportData.asCSV(rows, "vehicles");
+    }
+
+    return exportData.asPDF(tableRef.current!, "vehicles");
+  };
+
   return (
     <>
       <TableFilter
         onRowChange={table.setPageSize}
         onSearchChange={table.setGlobalFilter}
+        onExport={onExport}
       />
 
       <section className="flex card p-5 space-y-4">
-        <Table>
+        <Table ref={tableRef}>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroups) => {
               return (

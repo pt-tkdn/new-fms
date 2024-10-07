@@ -9,6 +9,7 @@ const nextConfig = {
   },
   experimental: {
     typedRoutes: true,
+    reactCompiler: true,
   },
 };
 

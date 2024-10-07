@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useRef } from "react";
 import { useDriverQuery } from "#/modules/application/hooks/useDriverQuery";
 import { Driver } from "#/modules/assets/domain/entities/driver";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
@@ -12,7 +13,9 @@ import {
   TableBody,
   TableCell,
 } from "#/shared/components/ui/table";
-import TableFilter from "#/shared/core/presentation/TableFilter";
+import TableFilter, {
+  ExportType,
+} from "#/shared/core/presentation/TableFilter";
 import TablePagination from "#/shared/core/presentation/TablePagination";
 import {
   createColumnHelper,
@@ -22,7 +25,8 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useMemo } from "react";
+import * as exportData from "#/shared/utils/exportData";
+import { useToast } from "#/shared/hooks/use-toast";
 
 const columnHelper = createColumnHelper<Driver>();
 
@@ -77,6 +81,8 @@ const fallbackData: Driver[] = Array(10).fill({} as unknown as Driver);
 const DriversTable = () => {
   const account = useAccountState();
   const { data, isFetching } = useDriverQuery(account?.id);
+  const { toast } = useToast();
+  const tableRef = useRef<HTMLTableElement>(null);
 
   const rowsData = useMemo(() => {
     if (isFetching) return fallbackData;
@@ -103,15 +109,47 @@ const DriversTable = () => {
     getPaginationRowModel: getPaginationRowModel<Driver>(),
   });
 
+  const onExport = (type: ExportType) => {
+    if (!table.getFilteredRowModel().rows.length) {
+      return toast({
+        variant: "destructive",
+        title: "No data to export",
+        description: "Please try again",
+        duration: 5000,
+      });
+    }
+
+    const rows = table.getFilteredRowModel().rows.map((row) => {
+      return {
+        Name: row.original.name,
+        "Driver Code": row.original.code,
+        "iButton No": row.original.iButton?.iButtonNo ?? "",
+        "License Number": row.original.licenseNumber ?? "",
+        "Phone Number": row.original.phone ?? "",
+        Status: row.original.status,
+      };
+    });
+
+    if (type === "Excel") {
+      return exportData.asXLSX(rows, "vehicles");
+    }
+    if (type === "CSV") {
+      return exportData.asCSV(rows, "vehicles");
+    }
+
+    return exportData.asPDF(tableRef.current!, "vehicles");
+  };
+
   return (
     <>
       <TableFilter
         onRowChange={table.setPageSize}
         onSearchChange={table.setGlobalFilter}
+        onExport={onExport}
       />
 
       <section className="flex card p-5 space-y-4">
-        <Table>
+        <Table ref={tableRef}>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroups) => {
               return (
