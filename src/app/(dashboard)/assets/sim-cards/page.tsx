@@ -1,6 +1,5 @@
-"use client";
-
 import { Plus } from "lucide-react";
+import Head from "next/head";
 import * as React from "react";
 
 import SIMCardsTable from "#/modules/assets/presentation/SIMCardsTable";
@@ -10,22 +9,27 @@ import { Button } from "#/shared/components/ui/button";
 
 const IButtonPage = () => {
   return (
-    <main className="flex flex-col p-8 gap-y-4">
-      <AccountProvider>
-        <div className="flex flex-row justify-between items-center">
-          <SelectAccount />
+    <>
+      <Head>
+        <title>SIM Cards</title>
+      </Head>
+      <main className="flex flex-col p-8 gap-y-4">
+        <AccountProvider>
+          <div className="flex flex-row justify-between items-center">
+            <SelectAccount />
 
-          <Button className="bg-green-400 hover:bg-green-400/90">
-            Create New
-            <span className="font-bold">
-              <Plus className="ml-2" size={12} strokeWidth={4} />
-            </span>
-          </Button>
-        </div>
+            <Button className="bg-green-400 hover:bg-green-400/90">
+              Create New
+              <span className="font-bold">
+                <Plus className="ml-2" size={12} strokeWidth={4} />
+              </span>
+            </Button>
+          </div>
 
-        <SIMCardsTable />
-      </AccountProvider>
-    </main>
+          <SIMCardsTable />
+        </AccountProvider>
+      </main>
+    </>
   );
 };
 
