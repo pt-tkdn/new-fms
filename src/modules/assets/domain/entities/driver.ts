@@ -1,6 +1,7 @@
 import { z } from "zod";
-import { activeStatus } from "#/modules/assets/domain/valueObjects/activeStatus";
+
 import { iButton } from "#/modules/assets/domain/entities/iButton";
+import { activeStatus } from "#/modules/assets/domain/valueObjects/activeStatus";
 
 const driver = z.object({
   id: z.number(),

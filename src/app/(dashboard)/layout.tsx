@@ -1,4 +1,5 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+
 import SideBarMenu from "#/components/dashboard-layout/SideBarMenu";
 import Header from "#/components/dashboard-layout/StickyHeader";
 

@@ -1,4 +1,6 @@
 "use client";
+import dayjs from "dayjs";
+
 import { useDashboardQuery } from "#/modules/overviews/application/hooks/useDashboardQuery";
 import { Button } from "#/shared/components/ui/button";
 import { Skeleton } from "#/shared/components/ui/skeleton";
@@ -10,7 +12,6 @@ import {
   TableHeader,
   TableRow,
 } from "#/shared/components/ui/table";
-import dayjs from "dayjs";
 
 export default function RecentEvents() {
   return (

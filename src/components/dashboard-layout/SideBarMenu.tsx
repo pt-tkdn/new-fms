@@ -1,21 +1,21 @@
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+import LogoutButton from "#/modules/user/presentation/LogoutButton";
+import { iconPaths } from "#/shared/assets/icon_paths";
+import IcAssets from "#/shared/assets/icons/ic_assets.svg";
+import IcMonitoring from "#/shared/assets/icons/ic_monitory.svg";
+import IcReports from "#/shared/assets/icons/ic_reports.svg";
+import IcRoad from "#/shared/assets/icons/ic_road.svg";
+import IcSpeedometer from "#/shared/assets/icons/ic_speedometer.svg";
+import IcTruckPoint from "#/shared/assets/icons/ic_truckpoint.svg";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
 } from "#/shared/components/ui/accordion";
-
-import IcAssets from "#/shared/assets/icons/ic_assets.svg";
-import IcSpeedometer from "#/shared/assets/icons/ic_speedometer.svg";
-import IcTruckPoint from "#/shared/assets/icons/ic_truckpoint.svg";
-import IcRoad from "#/shared/assets/icons/ic_road.svg";
-import IcMonitoring from "#/shared/assets/icons/ic_monitory.svg";
-import IcReports from "#/shared/assets/icons/ic_reports.svg";
-import { ChevronDown } from "lucide-react";
-import { iconPaths } from "#/shared/assets/icon_paths";
-import Image from "next/image";
-import Link from "next/link";
-import LogoutButton from "#/modules/user/presentation/LogoutButton";
 
 export interface SubMenu {
   name: string;

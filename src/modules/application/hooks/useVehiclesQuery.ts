@@ -1,6 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
+
 import assetsRepositoryImpl from "#/modules/assets/data/assetsRepositoryImpl";
 import { queryKeys } from "#/shared/utils/react-query/queryKeys";
-import { useQuery } from "@tanstack/react-query";
 
 export const useVehiclesQuery = (accountId?: number) => {
   return useQuery({

@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 // 1. Specify protected and public routes
 const publicRoutes = ["/login", "/signup", "/"];

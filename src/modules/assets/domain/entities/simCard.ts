@@ -1,5 +1,6 @@
-import { activeStatus } from "../valueObjects/activeStatus";
 import { z } from "zod";
+
+import { activeStatus } from "../valueObjects/activeStatus";
 
 export const simCard = z.object({
   id: z.number(),

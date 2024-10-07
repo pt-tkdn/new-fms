@@ -1,4 +1,4 @@
-import { BaseHttpResponse } from "#/shared/utils/httpClient";
+import type { BaseHttpResponse } from "#/shared/utils/httpClient";
 
 export namespace OverviewDto {
   export type DashboardResponse = BaseHttpResponse<DashboardData>;

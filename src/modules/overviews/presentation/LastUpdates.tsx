@@ -1,8 +1,9 @@
 "use client";
-import { useDashboardQuery } from "#/modules/overviews/application/hooks/useDashboardQuery";
-import { Skeleton } from "#/shared/components/ui/skeleton";
 import dayjs from "dayjs";
 import { Info } from "lucide-react";
+
+import { useDashboardQuery } from "#/modules/overviews/application/hooks/useDashboardQuery";
+import { Skeleton } from "#/shared/components/ui/skeleton";
 
 const LastUpdates = () => {
   return (

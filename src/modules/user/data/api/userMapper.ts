@@ -1,6 +1,8 @@
-import { UserDto } from "#/modules/user/data/api/userApiDto";
-import { Account, createAccount } from "#/modules/user/domain/entities/account";
-import { createUser, User } from "#/modules/user/domain/entities/user";
+import type { UserDto } from "#/modules/user/data/api/userApiDto";
+import type { Account } from "#/modules/user/domain/entities/account";
+import { createAccount } from "#/modules/user/domain/entities/account";
+import type { User } from "#/modules/user/domain/entities/user";
+import { createUser } from "#/modules/user/domain/entities/user";
 
 export const mapUserResponseToEntity = (res: UserDto.LoginResponse): User => {
   return createUser({

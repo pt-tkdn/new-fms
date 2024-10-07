@@ -1,9 +1,10 @@
+import dynamic from "next/dynamic";
+
 import { GreetingSkeleton } from "#/modules/overviews/presentation/Greeting";
 import LastUpdates from "#/modules/overviews/presentation/LastUpdates";
 import LiveMap from "#/modules/overviews/presentation/LiveMap";
 import RecentEvents from "#/modules/overviews/presentation/RecentEvents";
 import VehicleStatus from "#/modules/overviews/presentation/VehicleStatus";
-import dynamic from "next/dynamic";
 
 const Greeting = dynamic(
   () => import("#/modules/overviews/presentation/Greeting"),

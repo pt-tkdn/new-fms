@@ -1,5 +1,5 @@
-import { VehicleStatus } from "./valueObjects/vehicleStatus";
-import { Event } from "./entities/event";
+import type { Event } from "./entities/event";
+import type { VehicleStatus } from "./valueObjects/vehicleStatus";
 
 export interface GetOverviewsResult {
   vehicleStatus: VehicleStatus[];

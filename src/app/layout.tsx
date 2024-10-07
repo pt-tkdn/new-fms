@@ -1,8 +1,10 @@
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
+
+import { Toaster } from "#/shared/components/ui/toaster";
 import ReactQueryProvider from "#/shared/utils/react-query/ReactQueryProvider";
 
 dayjs.extend(utc);
@@ -12,7 +14,6 @@ dayjs.tz.guess();
 import "normalize.css";
 import "./build.css";
 import "./globals.css";
-import { Toaster } from "#/shared/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "FMS by TKDN",

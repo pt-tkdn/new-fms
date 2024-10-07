@@ -1,7 +1,8 @@
 "use client";
 
-import { Button } from "#/shared/components/ui/button";
 import { useFormStatus } from "react-dom";
+
+import { Button } from "#/shared/components/ui/button";
 
 const LoginButton: React.FC = () => {
   const { pending } = useFormStatus();

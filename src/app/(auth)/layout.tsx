@@ -1,6 +1,7 @@
-import { illustrationPaths } from "#/shared/assets/illustration_paths";
 import Image from "next/image";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+
+import { illustrationPaths } from "#/shared/assets/illustration_paths";
 
 const AuthLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (

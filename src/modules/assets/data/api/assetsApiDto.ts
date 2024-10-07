@@ -1,4 +1,4 @@
-import { BaseHttpResponse } from "#/shared/utils/httpClient";
+import type { BaseHttpResponse } from "#/shared/utils/httpClient";
 
 export namespace AssetsApiDto {
   export type GPSByAccountIDResponse = BaseHttpResponse<AccountResponse[]>;

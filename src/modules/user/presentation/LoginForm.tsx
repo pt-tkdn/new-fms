@@ -1,19 +1,19 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useFormState, useFormStatus } from "react-dom";
+
 import { login } from "#/modules/user/application/actions/session";
 import { useUserActions } from "#/modules/user/application/hooks/useUserStore";
-import { User } from "#/modules/user/domain/entities/user";
+import type { User } from "#/modules/user/domain/entities/user";
 import { Button } from "#/shared/components/ui/button";
 import { Checkbox } from "#/shared/components/ui/checkbox";
 import { Input } from "#/shared/components/ui/input";
 import { Label } from "#/shared/components/ui/label";
-import { ActionResult } from "#/shared/core/application/actionResult";
+import type { ActionResult } from "#/shared/core/application/actionResult";
 import { useToast } from "#/shared/hooks/use-toast";
-import { HttpError } from "#/shared/utils/httpClient";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-
-import { useFormState, useFormStatus } from "react-dom";
+import type { HttpError } from "#/shared/utils/httpClient";
 
 const LoginForm: React.FC = () => {
   const [state, loginAction] = useFormState(

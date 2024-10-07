@@ -1,5 +1,6 @@
-import { simCard } from "#/modules/assets/domain/entities/simCard";
 import { z } from "zod";
+
+import { simCard } from "#/modules/assets/domain/entities/simCard";
 
 export const gps = z.object({
   id: z.number(),

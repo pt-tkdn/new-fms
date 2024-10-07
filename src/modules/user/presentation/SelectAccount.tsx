@@ -1,11 +1,13 @@
 "use client";
-import { Button } from "#/shared/components/ui/button";
+import { Check, ChevronDown } from "lucide-react";
+import { useState } from "react";
+
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "#/shared/components/ui/popover";
-import { cn } from "#/shared/lib/utils";
+  useAccountActions,
+  useAccountState,
+} from "#/modules/user/application/context/AccountProvider";
+import { useAccountsQuery } from "#/modules/user/application/hooks/useAccountsQuery";
+import { Button } from "#/shared/components/ui/button";
 import {
   CommandInput,
   CommandList,
@@ -14,13 +16,12 @@ import {
   CommandItem,
   Command,
 } from "#/shared/components/ui/command";
-import { Check, ChevronDown } from "lucide-react";
-import { useState } from "react";
-import { useAccountsQuery } from "#/modules/user/application/hooks/useAccountsQuery";
 import {
-  useAccountActions,
-  useAccountState,
-} from "#/modules/user/application/context/AccountProvider";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "#/shared/components/ui/popover";
+import { cn } from "#/shared/lib/utils";
 
 const SelectAccount: React.FC = () => {
   const { data } = useAccountsQuery();

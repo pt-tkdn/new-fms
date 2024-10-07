@@ -1,7 +1,8 @@
-import userRepositoryImpl from "#/modules/user/data/userRepositoryImpl";
-import { User } from "#/modules/user/domain/entities/user";
-import { BaseHttpError } from "#/shared/utils/httpClient";
 import { useMutation } from "@tanstack/react-query";
+
+import userRepositoryImpl from "#/modules/user/data/userRepositoryImpl";
+import type { User } from "#/modules/user/domain/entities/user";
+import type { BaseHttpError } from "#/shared/utils/httpClient";
 
 export interface LoginParams {
   email: string;

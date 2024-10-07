@@ -1,6 +1,8 @@
 "use client";
-import { Account } from "#/modules/user/domain/entities/account";
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import type { PropsWithChildren } from "react";
+import { createContext, useContext, useState } from "react";
+
+import type { Account } from "#/modules/user/domain/entities/account";
 
 type AccountState = Account | null;
 

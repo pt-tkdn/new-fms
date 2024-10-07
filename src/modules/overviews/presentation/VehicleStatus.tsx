@@ -1,7 +1,8 @@
 "use client";
-import { iconPaths } from "#/shared/assets/icon_paths";
 import Image from "next/image";
+
 import { useDashboardQuery } from "#/modules/overviews/application/hooks/useDashboardQuery";
+import { iconPaths } from "#/shared/assets/icon_paths";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 
 const VehicleStatus: React.FC = () => {

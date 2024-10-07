@@ -1,9 +1,9 @@
-import { User } from "#/modules/user/domain/entities/user";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 import { useShallow } from "zustand/react/shallow";
 
-import { immer } from "zustand/middleware/immer";
+import type { User } from "#/modules/user/domain/entities/user";
 
 interface UserStore {
   data: User | null;

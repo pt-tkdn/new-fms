@@ -1,7 +1,8 @@
 "use client";
 
-import { logout } from "#/modules/user/application/actions/session";
 import { Power } from "lucide-react";
+
+import { logout } from "#/modules/user/application/actions/session";
 
 const LogoutButton: React.FC = () => {
   return (

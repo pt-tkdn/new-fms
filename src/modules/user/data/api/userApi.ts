@@ -1,4 +1,4 @@
-import { UserDto } from "#/modules/user/data/api/userApiDto";
+import type { UserDto } from "#/modules/user/data/api/userApiDto";
 import {
   mapAccountsResponseToEntity,
   mapUserResponseToEntity,

@@ -1,5 +1,6 @@
-import { useUserStore } from "#/modules/user/application/hooks/useUserStore";
 import xior from "xior";
+
+import { useUserStore } from "#/modules/user/application/hooks/useUserStore";
 export interface BaseHttpResponse<T> {
   error: BaseHttpError | null;
   data: T;

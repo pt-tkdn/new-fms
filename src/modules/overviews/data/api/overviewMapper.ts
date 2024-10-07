@@ -1,5 +1,5 @@
-import { OverviewDto } from "#/modules/overviews/data/api/overviewDto";
-import { GetOverviewsResult } from "#/modules/overviews/domain/overviewRepository";
+import type { OverviewDto } from "#/modules/overviews/data/api/overviewDto";
+import type { GetOverviewsResult } from "#/modules/overviews/domain/overviewRepository";
 import { createVehicleStatus } from "#/modules/overviews/domain/valueObjects/vehicleStatus";
 
 export const mapDashboardResponseToEntity = (

@@ -1,8 +1,10 @@
 "use client";
-import { useUserSelector } from "#/modules/user/application/hooks/useUserStore";
-import { Skeleton } from "#/shared/components/ui/skeleton";
+
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
+
+import { useUserSelector } from "#/modules/user/application/hooks/useUserStore";
+import { Skeleton } from "#/shared/components/ui/skeleton";
 
 const Greeting = () => {
   const name = useUserSelector((s) => s.name);
