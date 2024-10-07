@@ -30,7 +30,7 @@ const VehicleStatus: React.FC = () => {
       parking: 0,
       driving: 0,
       idle: 0,
-    }
+    },
   );
 
   return (

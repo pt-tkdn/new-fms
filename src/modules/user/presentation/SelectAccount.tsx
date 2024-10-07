@@ -30,10 +30,10 @@ const SelectAccount: React.FC = () => {
   const [search, setSearch] = useState("");
 
   const filteredData = data?.filter((acc) =>
-    acc.name.toLowerCase().includes(search.toLowerCase())
+    acc.name.toLowerCase().includes(search.toLowerCase()),
   );
   const selectedAccount = data?.find(
-    (acc) => acc.id.toString() === account?.id.toString()
+    (acc) => acc.id.toString() === account?.id.toString(),
   );
 
   return (
@@ -64,8 +64,8 @@ const SelectAccount: React.FC = () => {
                   onSelect={(currentValue) => {
                     setAccount(
                       filteredData.find(
-                        (acc) => acc.id.toString() === currentValue
-                      )!
+                        (acc) => acc.id.toString() === currentValue,
+                      )!,
                     );
                     setOpen(false);
                   }}
@@ -75,7 +75,7 @@ const SelectAccount: React.FC = () => {
                       "mr-2 h-4 w-4",
                       account?.id.toString() === acc.id.toString()
                         ? "opacity-100"
-                        : "opacity-0"
+                        : "opacity-0",
                     )}
                   />
                   {acc.name}

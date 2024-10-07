@@ -181,7 +181,7 @@ const VehiclesTable = () => {
                         <TableHead key={header.id} className="w-48">
                           {flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                         </TableHead>
                       );
@@ -190,7 +190,7 @@ const VehiclesTable = () => {
                       <TableHead key={header.id}>
                         {flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                       </TableHead>
                     );
@@ -208,7 +208,7 @@ const VehiclesTable = () => {
                       <TableCell key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )}
                       </TableCell>
                     );

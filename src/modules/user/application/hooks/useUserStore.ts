@@ -54,9 +54,9 @@ export const useUserStore = create<UserStore>()(
             }
           };
         },
-      }
-    )
-  )
+      },
+    ),
+  ),
 );
 
 export const useUserSelector = <T>(selector?: (state: User) => T): T => {
@@ -64,8 +64,8 @@ export const useUserSelector = <T>(selector?: (state: User) => T): T => {
     useShallow(
       selector
         ? (state) => selector(state.data!) as T
-        : (state) => state.data! as T
-    )
+        : (state) => state.data! as T,
+    ),
   );
 
   return data;

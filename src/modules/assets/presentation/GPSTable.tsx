@@ -1,7 +1,17 @@
 "use client";
 
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { useMemo, useRef } from "react";
+
 import { useGPSQuery } from "#/modules/application/hooks/useGPSQuery";
-import { GPS } from "#/modules/assets/domain/entities/gps";
+import type { GPS } from "#/modules/assets/domain/entities/gps";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 import {
@@ -12,19 +22,9 @@ import {
   TableBody,
   TableCell,
 } from "#/shared/components/ui/table";
-import TableFilter, {
-  ExportType,
-} from "#/shared/core/presentation/TableFilter";
+import type { ExportType } from "#/shared/core/presentation/TableFilter";
+import TableFilter from "#/shared/core/presentation/TableFilter";
 import TablePagination from "#/shared/core/presentation/TablePagination";
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-import { useMemo, useRef } from "react";
 import { useToast } from "#/shared/hooks/use-toast";
 import * as exportData from "#/shared/utils/exportData";
 
@@ -151,7 +151,7 @@ const GPSTable = () => {
                         <TableHead key={header.id} className="w-48">
                           {flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                         </TableHead>
                       );
@@ -160,7 +160,7 @@ const GPSTable = () => {
                       <TableHead key={header.id}>
                         {flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                       </TableHead>
                     );
@@ -178,7 +178,7 @@ const GPSTable = () => {
                       <TableCell key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )}
                       </TableCell>
                     );

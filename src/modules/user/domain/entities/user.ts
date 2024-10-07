@@ -14,7 +14,7 @@ const user = z.object({
       capabilityId: z.number(),
       capability: z.string(),
       isAble: z.boolean(),
-    })
+    }),
   ),
   account: z.null().optional(),
 });

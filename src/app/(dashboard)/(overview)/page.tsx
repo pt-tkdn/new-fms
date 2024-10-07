@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 
 const Greeting = dynamic(
   () => import("#/modules/overviews/presentation/Greeting"),
-  { ssr: false, loading: () => <GreetingSkeleton /> }
+  { ssr: false, loading: () => <GreetingSkeleton /> },
 );
 
 export default function OverviewPage() {

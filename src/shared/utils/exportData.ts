@@ -11,10 +11,10 @@ export const asXLSX = <Row>(rows: Row[], fileName: string) => {
 };
 
 export const asCSV = <
-  Row extends { [k: string]: string | number; [k: number]: string | number }
+  Row extends { [k: string]: string | number; [k: number]: string | number },
 >(
   rows: Row[],
-  fileName: string
+  fileName: string,
 ) => {
   const csvConfig = mkConfig({
     fieldSeparator: ",",

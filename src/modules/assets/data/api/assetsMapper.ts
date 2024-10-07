@@ -7,7 +7,7 @@ import { createVehicle } from "#/modules/assets/domain/entities/vehicle";
 import * as activeStatus from "#/modules/assets/domain/valueObjects/activeStatus";
 
 export const mapGPSResponseToEntity = (
-  res: AssetsApiDto.GPSByAccountIDResponse
+  res: AssetsApiDto.GPSByAccountIDResponse,
 ): GPS[] => {
   return res.data.map((asset) => {
     return createGPS({
@@ -36,7 +36,7 @@ export const mapGPSResponseToEntity = (
 };
 
 export const mapSIMCardResponseToEntity = (
-  res: AssetsApiDto.SIMCardByAccountIDResponse
+  res: AssetsApiDto.SIMCardByAccountIDResponse,
 ) => {
   return res.data.map((simCard) => {
     return createSimCard({
@@ -52,7 +52,7 @@ export const mapSIMCardResponseToEntity = (
 };
 
 export const mapVehicleResponseToEntity = (
-  res: AssetsApiDto.VehicleByAccountIDResponse
+  res: AssetsApiDto.VehicleByAccountIDResponse,
 ) => {
   return res.data.map((vehicle) => {
     return createVehicle({
@@ -93,7 +93,7 @@ export const mapVehicleResponseToEntity = (
 };
 
 export const mapDriverResponseToEntity = (
-  res: AssetsApiDto.DriverByAccountIDResponse
+  res: AssetsApiDto.DriverByAccountIDResponse,
 ) => {
   return res.data.map((driver) => {
     return createDriver({

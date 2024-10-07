@@ -3,7 +3,7 @@ import { GetOverviewsResult } from "#/modules/overviews/domain/overviewRepositor
 import { createVehicleStatus } from "#/modules/overviews/domain/valueObjects/vehicleStatus";
 
 export const mapDashboardResponseToEntity = (
-  response: OverviewDto.DashboardResponse
+  response: OverviewDto.DashboardResponse,
 ): GetOverviewsResult => {
   return {
     vehicleStatus: response.data.status_vehicle.map(createVehicleStatus),

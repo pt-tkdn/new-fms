@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const Greeting = () => {
   const name = useUserSelector((s) => s.name);
   const [clock, setClock] = useState(
-    dayjs().format("DD MMM YYYY, HH.mm.ss [WIB]")
+    dayjs().format("DD MMM YYYY, HH.mm.ss [WIB]"),
   );
 
   useEffect(() => {

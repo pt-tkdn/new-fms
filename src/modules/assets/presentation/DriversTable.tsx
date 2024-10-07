@@ -1,8 +1,17 @@
 "use client";
 
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
+
 import { useDriverQuery } from "#/modules/application/hooks/useDriverQuery";
-import { Driver } from "#/modules/assets/domain/entities/driver";
+import type { Driver } from "#/modules/assets/domain/entities/driver";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 import {
@@ -13,20 +22,11 @@ import {
   TableBody,
   TableCell,
 } from "#/shared/components/ui/table";
-import TableFilter, {
-  ExportType,
-} from "#/shared/core/presentation/TableFilter";
+import type { ExportType } from "#/shared/core/presentation/TableFilter";
+import TableFilter from "#/shared/core/presentation/TableFilter";
 import TablePagination from "#/shared/core/presentation/TablePagination";
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-import * as exportData from "#/shared/utils/exportData";
 import { useToast } from "#/shared/hooks/use-toast";
+import * as exportData from "#/shared/utils/exportData";
 
 const columnHelper = createColumnHelper<Driver>();
 
@@ -160,7 +160,7 @@ const DriversTable = () => {
                         <TableHead key={header.id} className="w-48">
                           {flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                         </TableHead>
                       );
@@ -169,7 +169,7 @@ const DriversTable = () => {
                       <TableHead key={header.id}>
                         {flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                       </TableHead>
                     );
@@ -187,7 +187,7 @@ const DriversTable = () => {
                       <TableCell key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )}
                       </TableCell>
                     );

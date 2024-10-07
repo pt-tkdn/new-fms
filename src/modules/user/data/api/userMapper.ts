@@ -24,12 +24,12 @@ export const mapUserResponseToEntity = (res: UserDto.LoginResponse): User => {
 };
 
 export const mapAccountsResponseToEntity = (
-  res: UserDto.AccountResponse
+  res: UserDto.AccountResponse,
 ): Account[] => {
   return res.data.map((account) =>
     createAccount({
       name: account.account_name,
       id: account.id,
-    })
+    }),
   );
 };

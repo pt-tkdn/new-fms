@@ -15,7 +15,7 @@ import { XiorError } from "xior";
 
 export async function login(
   prevState: ActionResult<User, HttpError>,
-  formData: FormData
+  formData: FormData,
 ): Promise<ActionResult<User, HttpError>> {
   try {
     const email = formData.get("email") as string;
@@ -40,7 +40,7 @@ export async function login(
         case: "unknown",
         code: "unknown",
         message: "Terjadi kesalahan, silahkan coba lagi nanti",
-      }
+      },
     );
   }
 }

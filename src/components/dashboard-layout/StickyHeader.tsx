@@ -8,12 +8,12 @@ import { usePathname } from "next/navigation";
 const ProfileHeader = dynamic(
   () =>
     import("#/modules/user/presentation/ProfileHeader").then(
-      (module) => module.ProfileHeader
+      (module) => module.ProfileHeader,
     ),
   {
     ssr: false,
     loading: () => <ProfileHeaderSkeleton />,
-  }
+  },
 );
 
 const Header = () => {

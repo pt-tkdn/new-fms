@@ -18,7 +18,7 @@ import { useFormState, useFormStatus } from "react-dom";
 const LoginForm: React.FC = () => {
   const [state, loginAction] = useFormState(
     login,
-    null as unknown as ActionResult<User, HttpError>
+    null as unknown as ActionResult<User, HttpError>,
   );
   const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();

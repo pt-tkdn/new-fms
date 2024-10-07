@@ -13,7 +13,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div
         className={cn(
           "group flex w-full h-11 gap-x-4 bg-white items-center border border-slate-200 rounded-md px-4 focus-within:text-primary focus-within:ring-2 focus-within:outline-none focus-within:ring-offset-0 focus-within:ring-primary",
-          className
+          className,
         )}
       >
         {prefix ? prefix : null}
@@ -26,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {suffix ? suffix : null}
       </div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 
