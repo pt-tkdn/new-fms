@@ -2,17 +2,17 @@ import { Plus } from "lucide-react";
 import type { Metadata } from "next";
 import * as React from "react";
 
-import DriversTable from "#/modules/assets/presentation/DriversTable";
+import StopsTable from "#/modules/configurations/presentation/StopsTable";
 import AccountProvider from "#/modules/user/application/context/AccountProvider";
 import SelectAccount from "#/modules/user/presentation/SelectAccount";
 import { Button } from "#/shared/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Driver",
-  description: "Driver",
+  title: "Stops",
+  description: "Stops",
 };
 
-const VehiclePage = () => {
+const StopsPage = () => {
   return (
     <main className="flex flex-col p-8 gap-y-4">
       <AccountProvider>
@@ -27,10 +27,10 @@ const VehiclePage = () => {
           </Button>
         </div>
 
-        <DriversTable />
+        <StopsTable />
       </AccountProvider>
     </main>
   );
 };
 
-export default VehiclePage;
+export default StopsPage;

@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { account } from "#/modules/user/domain/entities/account";
+
 const user = z.object({
   id: z.number(),
   accessToken: z.string(),
@@ -16,7 +18,7 @@ const user = z.object({
       isAble: z.boolean(),
     }),
   ),
-  account: z.null().optional(),
+  account: account.nullable(),
 });
 
 export const createUser = (data: User) => {

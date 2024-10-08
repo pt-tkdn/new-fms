@@ -1,10 +1,16 @@
 import { Plus } from "lucide-react";
+import type { Metadata } from "next";
 import * as React from "react";
 
 import VehiclesTable from "#/modules/assets/presentation/VehiclesTable";
 import AccountProvider from "#/modules/user/application/context/AccountProvider";
 import SelectAccount from "#/modules/user/presentation/SelectAccount";
 import { Button } from "#/shared/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Vehicles",
+  description: "Vehicles",
+};
 
 const VehiclePage = () => {
   return (

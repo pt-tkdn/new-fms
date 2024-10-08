@@ -7,9 +7,9 @@ import {
 import { Skeleton } from "#/shared/components/ui/skeleton";
 
 const ProfileHeader: React.FC = () => {
-  const { name, status } = useUserSelector((s) => ({
+  const { name, account } = useUserSelector((s) => ({
     name: s.name,
-    status: s.status,
+    account: s.account,
   }));
 
   // create initial name 2 character
@@ -33,15 +33,19 @@ const ProfileHeader: React.FC = () => {
   const initial = generateInitial(name);
 
   return (
-    <button className="flex gap-x-5">
+    <button className="flex gap-x-5 items-center">
       <Avatar>
         <AvatarImage src={name} />
         <AvatarFallback>{initial}</AvatarFallback>
       </Avatar>
 
-      <div className="flex flex-col items-start">
+      <div className="flex flex-col items-start justify-center">
         <span className="text-sm font-bold text-slate-800">{name}</span>
-        <span className="text-xs font-normal text-slate-700">{status}</span>
+        {account && (
+          <span className="text-xs font-normal text-slate-700">
+            {account.name}
+          </span>
+        )}
       </div>
     </button>
   );

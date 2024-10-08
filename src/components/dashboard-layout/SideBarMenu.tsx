@@ -45,12 +45,27 @@ const ASSETS_SUB_MENU: SubMenu[] = [
   },
 ];
 
-const CONFIGURATION_SUB_MENU = [
-  "Stops",
-  "Routes",
-  "Sub Routes",
-  "Custom Alerts",
-  "GPS Command",
+const CONFIGURATION_SUB_MENU: SubMenu[] = [
+  {
+    name: "Stops",
+    routeName: "/configurations/stops",
+  },
+  {
+    name: "Routes",
+    routeName: "/",
+  },
+  {
+    name: "Sub Routes",
+    routeName: "/",
+  },
+  {
+    name: "Custom Alerts",
+    routeName: "/",
+  },
+  {
+    name: "GPS Command",
+    routeName: "/",
+  },
 ];
 const OPERATION_SUB_MENU = ["Trip", "Upload Trip", "Deliveries"];
 const MONITORING_SUB_MENU = [
@@ -137,7 +152,13 @@ const SideBarMenu = () => {
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col px-4 gap-y-2">
                   {CONFIGURATION_SUB_MENU.map((item) => (
-                    <span key={item}>{item}</span>
+                    <Link
+                      className="hover:text-primary"
+                      href={item.routeName}
+                      key={item.name}
+                    >
+                      {item.name}
+                    </Link>
                   ))}
                 </AccordionContent>
               </li>

@@ -17,7 +17,7 @@ export namespace UserDto {
     status: number;
     last_login: string;
     capabilities: Capability[];
-    account: null;
+    account: Account | null;
   }
 
   export interface Capability {
