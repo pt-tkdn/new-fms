@@ -8,11 +8,11 @@ import SelectAccount from "#/modules/user/presentation/SelectAccount";
 import { Button } from "#/shared/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Routes",
-  description: "Routes",
+  title: "Alerts",
+  description: "Alerts",
 };
 
-const RoutesPage = () => {
+const AlertsPage = () => {
   return (
     <main className="flex flex-col p-8 gap-y-4">
       <AccountProvider>
@@ -33,4 +33,4 @@ const RoutesPage = () => {
   );
 };
 
-export default RoutesPage;
+export default AlertsPage;

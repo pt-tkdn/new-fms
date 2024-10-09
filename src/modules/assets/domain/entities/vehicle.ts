@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { gps } from "#/modules/assets/domain/entities/gps";
+import type { Nullable } from "#/shared/core/domain/types/nullable";
 import { activeStatus } from "#/shared/core/domain/valueObjects/activeStatus";
 
 const vehicle = z.object({
@@ -8,17 +9,31 @@ const vehicle = z.object({
   accountId: z.number(),
   vehicleNo: z.string(),
   vehicleCode: z.string(),
-  stnkNumber: z.any().nullable(),
-  machineNo: z.any().nullable(),
-  chassisNo: z.any().nullable(),
-  capacity: z.any().nullable(),
+  stnkNumber: z
+    .string()
+    .nullable()
+    .transform((val) => val ?? ""),
+  machineNo: z
+    .string()
+    .nullable()
+    .transform((val) => val ?? ""),
+  chassisNo: z
+    .string()
+    .nullable()
+    .transform((val) => val ?? ""),
+  capacity: z
+    .string()
+    .nullable()
+    .transform((val) => val ?? ""),
   status: activeStatus,
   odometer: z.number(),
   gps: gps.nullable(),
 });
 
-export type Vehicle = z.infer<typeof vehicle>;
+type RawVehicle = Nullable<z.infer<typeof vehicle>>;
 
-export const createVehicle = (data: Vehicle) => {
+export const createVehicle = (data: RawVehicle) => {
   return vehicle.parse(data);
 };
+
+export type Vehicle = ReturnType<typeof createVehicle>;

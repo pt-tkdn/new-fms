@@ -70,4 +70,32 @@ export namespace ConfigurationsApiDto {
     vehicle_id: number;
     route_id: number;
   }
+
+  export interface RouteVehicle {
+    vehicle_id: number;
+    route_id: number;
+  }
+
+  export interface Alert {
+    id: number;
+    account_id: number;
+    route_name: string;
+    route_code: string;
+    route_start_id: number;
+    route_start: Stop;
+    route_end_id: number;
+    route_end: Stop;
+    route_distance: number;
+    route_direction: number;
+    route_color: string;
+    status: number;
+    created_by: number;
+    updated_by: number;
+    created_at: string;
+    updated_at: string;
+    id_alert: number;
+    route_stops: RouteStop[];
+    route_vehicles: RouteVehicle[];
+    route_points: RoutePoint[];
+  }
 }

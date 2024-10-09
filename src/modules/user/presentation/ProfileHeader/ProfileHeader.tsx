@@ -8,8 +8,8 @@ import { Skeleton } from "#/shared/components/ui/skeleton";
 
 const ProfileHeader: React.FC = () => {
   const { name, account } = useUserSelector((s) => ({
-    name: s.name,
-    account: s.account,
+    name: s?.name,
+    account: s?.account,
   }));
 
   // create initial name 2 character
@@ -30,7 +30,7 @@ const ProfileHeader: React.FC = () => {
     return name.substring(0, 2).toUpperCase();
   };
 
-  const initial = generateInitial(name);
+  const initial = generateInitial(name ?? "");
 
   return (
     <button className="flex gap-x-5 items-center">

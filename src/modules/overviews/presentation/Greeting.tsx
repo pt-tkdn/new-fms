@@ -7,7 +7,7 @@ import { useUserSelector } from "#/modules/user/application/hooks/useUserStore";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 
 const Greeting = () => {
-  const name = useUserSelector((s) => s.name);
+  const name = useUserSelector((s) => s?.name);
   const [clock, setClock] = useState(
     dayjs().format("DD MMM YYYY, HH.mm.ss [WIB]"),
   );

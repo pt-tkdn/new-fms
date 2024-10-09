@@ -1,15 +1,8 @@
-import dynamic from "next/dynamic";
-
-import { GreetingSkeleton } from "#/modules/overviews/presentation/Greeting";
+import Greeting from "#/modules/overviews/presentation/Greeting";
 import LastUpdates from "#/modules/overviews/presentation/LastUpdates";
 import LiveMap from "#/modules/overviews/presentation/LiveMap";
 import RecentEvents from "#/modules/overviews/presentation/RecentEvents";
 import VehicleStatus from "#/modules/overviews/presentation/VehicleStatus";
-
-const Greeting = dynamic(
-  () => import("#/modules/overviews/presentation/Greeting"),
-  { ssr: false, loading: () => <GreetingSkeleton /> },
-);
 
 export default function OverviewPage() {
   return (
