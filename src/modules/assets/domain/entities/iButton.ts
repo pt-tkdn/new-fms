@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { activeStatus } from "#/modules/assets/domain/valueObjects/activeStatus";
+import { activeStatus } from "#/shared/core/domain/valueObjects/activeStatus";
 
 export const iButton = z.object({
   id: z.number(),

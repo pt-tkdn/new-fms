@@ -52,7 +52,7 @@ const CONFIGURATION_SUB_MENU: SubMenu[] = [
   },
   {
     name: "Routes",
-    routeName: "/",
+    routeName: "/configurations/routes",
   },
   {
     name: "Sub Routes",
@@ -87,7 +87,7 @@ const REPORTS_SUB_MENU = [
 
 const SideBarMenu = () => {
   return (
-    <aside className="w-[240px] sticky top-0 h-screen border-r px-[10px] bg-white overflow-y-auto">
+    <aside className="min-w-[240px] sticky top-0 h-screen border-r px-[10px] bg-white overflow-y-auto">
       <Image
         className="w-36 object-contain mx-auto my-10"
         src={iconPaths.fmsLogo}

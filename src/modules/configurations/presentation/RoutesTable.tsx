@@ -10,8 +10,8 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
 
-import { useStopsQuery } from "#/modules/configurations/applications/useStopsQuery";
-import type { Stop } from "#/modules/configurations/domain/entities/stop";
+import { useRoutesQuery } from "#/modules/configurations/applications/useRoutesQuery";
+import type { Route } from "#/modules/configurations/domain/entities/route";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 import {
@@ -28,56 +28,67 @@ import TablePagination from "#/shared/core/presentation/TablePagination";
 import { useToast } from "#/shared/hooks/use-toast";
 import * as exportData from "#/shared/utils/exportData";
 
-const columnHelper = createColumnHelper<Stop>();
+const columnHelper = createColumnHelper<Route>();
 
 const defaultColumns = [
   columnHelper.accessor("name", {
     id: "name",
-    header: () => "Stop Name",
+    header: () => "Route Name",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor("code", {
     id: "code",
-    header: () => "Stop Code",
+    header: () => "Route Code",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("address", {
-    id: "address",
-    header: () => "Address",
-    cell: (info) => info.getValue(),
+  columnHelper.accessor("start", {
+    id: "start",
+    header: () => "Start",
+    cell: (info) => info.getValue()?.name,
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("lat", {
-    id: "lat",
-    header: () => "Latitude",
-    cell: (info) => info.getValue(),
+  columnHelper.accessor("end", {
+    id: "end",
+    header: () => "End",
+    cell: (info) => info.getValue()?.name,
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("lng", {
-    id: "lng",
-    header: () => "Longitude",
+  columnHelper.accessor("distance", {
+    id: "distance",
+    header: () => "Distance (km)",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
 
-  columnHelper.accessor("radius", {
-    id: "radius",
-    header: () => "Radius",
-    cell: (info) => info.getValue(),
+  columnHelper.accessor("color", {
+    id: "color",
+    header: () => "Color",
+    cell: (info) => (
+      <span
+        // className={`p-1`}
+        style={{
+          backgroundColor: info.getValue(),
+          padding: "4px",
+        }}
+      >
+        {info.getValue()}
+      </span>
+    ),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("description", {
-    id: "description",
-    header: () => "Description",
+  columnHelper.accessor("direction", {
+    id: "direction",
+    header: () => "Direction",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor("status", {
     id: "status",
     header: () => "Status",
-    cell: (info) => info.getValue(),
+    cell: (info) =>
+      info.getValue().charAt(0).toUpperCase() + info.getValue().slice(1),
     footer: (info) => info.column.id,
   }),
   columnHelper.display({
@@ -87,11 +98,11 @@ const defaultColumns = [
   }),
 ];
 
-const fallbackData: Stop[] = Array(10).fill({} as unknown as Stop);
+const fallbackData: Route[] = Array(10).fill({} as unknown as Route);
 
-const StopsTable = () => {
+const RoutesTable = () => {
   const account = useAccountState();
-  const { data, isFetching } = useStopsQuery(account?.id);
+  const { data, isFetching } = useRoutesQuery(account?.id);
   const { toast } = useToast();
   const tableRef = useRef<HTMLTableElement>(null);
 
@@ -115,9 +126,9 @@ const StopsTable = () => {
   const table = useReactTable({
     columns: columns,
     data: rowsData,
-    getCoreRowModel: getCoreRowModel<Stop>(),
-    getFilteredRowModel: getFilteredRowModel<Stop>(),
-    getPaginationRowModel: getPaginationRowModel<Stop>(),
+    getCoreRowModel: getCoreRowModel<Route>(),
+    getFilteredRowModel: getFilteredRowModel<Route>(),
+    getPaginationRowModel: getPaginationRowModel<Route>(),
   });
 
   const onExport = (type: ExportType) => {
@@ -132,25 +143,25 @@ const StopsTable = () => {
 
     const rows = table.getFilteredRowModel().rows.map((row) => {
       return {
-        "Stop Name": row.original.name,
-        "Stop Code": row.original.code,
-        Address: row.original.address,
-        Latitude: row.original.lat,
-        Longitude: row.original.lng,
-        Radius: row.original.radius,
-        Description: row.original.description,
+        "Route Name": row.original.name,
+        "Route Code": row.original.code,
+        Start: row.original.start?.name ?? "",
+        End: row.original.end?.name ?? "",
+        "Distance (km)": row.original.distance,
+        Color: row.original.color,
+        Direction: row.original.direction,
         Status: row.original.status,
       };
     });
 
     if (type === "Excel") {
-      return exportData.asXLSX(rows, "stops");
+      return exportData.asXLSX(rows, "routes");
     }
     if (type === "CSV") {
-      return exportData.asCSV(rows, "stops");
+      return exportData.asCSV(rows, "routes");
     }
 
-    return exportData.asPDF(tableRef.current!, "stops");
+    return exportData.asPDF(tableRef.current!, "routes");
   };
 
   return (
@@ -224,4 +235,4 @@ const StopsTable = () => {
   );
 };
 
-export default StopsTable;
+export default RoutesTable;

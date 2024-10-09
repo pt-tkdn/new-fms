@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { gps } from "#/modules/assets/domain/entities/gps";
-import { activeStatus } from "#/modules/assets/domain/valueObjects/activeStatus";
+import { activeStatus } from "#/shared/core/domain/valueObjects/activeStatus";
 
 const vehicle = z.object({
   id: z.number(),

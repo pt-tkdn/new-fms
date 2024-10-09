@@ -8,7 +8,7 @@ import type { SimCard } from "#/modules/assets/domain/entities/simCard";
 import { createSimCard } from "#/modules/assets/domain/entities/simCard";
 import type { Vehicle } from "#/modules/assets/domain/entities/vehicle";
 import { createVehicle } from "#/modules/assets/domain/entities/vehicle";
-import * as activeStatus from "#/modules/assets/domain/valueObjects/activeStatus";
+import * as activeStatus from "#/shared/core/domain/valueObjects/activeStatus";
 
 export const mapGPSResponseToEntity = (
   res: AssetsApiDto.GPSByAccountIDResponse,

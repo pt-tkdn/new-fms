@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { activeStatus } from "../valueObjects/activeStatus";
+import { activeStatus } from "../../../../shared/core/domain/valueObjects/activeStatus";
 
 export const simCard = z.object({
   id: z.number(),

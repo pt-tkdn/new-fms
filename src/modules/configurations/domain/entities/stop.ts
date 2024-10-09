@@ -1,6 +1,8 @@
 import { z } from "zod";
 
-export const stops = z.object({
+import { activeStatus } from "#/shared/core/domain/valueObjects/activeStatus";
+
+export const stop = z.object({
   id: z.number(),
   name: z.string(),
   code: z.string(),
@@ -9,12 +11,12 @@ export const stops = z.object({
   lng: z.number(),
   radius: z.number(),
   description: z.string(),
-  status: z.number(),
-  polygon: z.array(z.unknown()),
+  status: activeStatus,
+  polygon: z.array(z.unknown()).nullable(),
 });
 
-export type Stop = z.infer<typeof stops>;
+export type Stop = z.infer<typeof stop>;
 
 export const createStops = (data: Stop) => {
-  return stops.parse(data);
+  return stop.parse(data);
 };
