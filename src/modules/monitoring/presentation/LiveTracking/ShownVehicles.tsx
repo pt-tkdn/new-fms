@@ -1,4 +1,4 @@
-import { Vehicle } from "#/modules/assets/domain/entities/vehicle";
+import type { Vehicle } from "#/modules/assets/domain/entities/vehicle";
 import { Chip } from "#/shared/components/ui/chip";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 
@@ -18,7 +18,7 @@ const ShownVehicles: React.FC<ShownVehiclesProps> = ({
   return (
     <div className="flex flex-1 flex-grow flex-row flex-wrap gap-2">
       {isLoading &&
-        Array.from({ length: 5 }, (_, i) => i).map((_, index) => (
+        Array.from({ length: 20 }, (_, i) => i).map((_, index) => (
           <Skeleton key={index} className="w-20 h-10" />
         ))}
       {vehicles.map((item) => (

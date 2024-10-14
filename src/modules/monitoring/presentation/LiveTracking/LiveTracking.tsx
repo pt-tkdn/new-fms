@@ -10,11 +10,10 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import type { Vehicle } from "#/modules/assets/domain/entities/vehicle";
 import { useLiveTrackingQuery } from "#/modules/monitoring/applications/hooks/useLiveTrackingQuery";
+import ShownVehicles from "#/modules/monitoring/presentation/LiveTracking/ShownVehicles";
 import VehicleMarker from "#/modules/monitoring/presentation/LiveTracking/VehicleMarker";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
-import { Chip } from "#/shared/components/ui/chip";
 import { Skeleton } from "#/shared/components/ui/skeleton";
-import ShownVehicles from "#/modules/monitoring/presentation/LiveTracking/ShownVehicles";
 
 interface LiveTrackingMapProps {
   vehicles: Vehicle[];
@@ -153,18 +152,30 @@ const LiveTracking = () => {
     boolean
   > | null>(null);
 
+  // this effect will run when the following conditions are met:
+  // 1. data is available
+  // 2. shownVehicle is not available
+  // 3. first data is not found in shownVehicle
   useEffect(() => {
-    if (
-      (!shownVehicle && data) ||
-      (data &&
-        data.length !== (shownVehicle && Object.keys(shownVehicle).length))
-    ) {
+    if (!shownVehicle && data) {
       setShownVehicle(
-        data?.reduce<Record<number, boolean>>((acc, item) => {
+        data.reduce<Record<number, boolean>>((acc, item) => {
           acc[item.id] = true;
           return acc;
         }, {}),
       );
+    }
+
+    if (data && shownVehicle) {
+      const firstData = data[0];
+      if (shownVehicle[firstData?.id] === undefined) {
+        setShownVehicle(
+          data.reduce<Record<number, boolean>>((acc, item) => {
+            acc[item.id] = true;
+            return acc;
+          }, {}),
+        );
+      }
     }
   }, [data, shownVehicle]);
 
