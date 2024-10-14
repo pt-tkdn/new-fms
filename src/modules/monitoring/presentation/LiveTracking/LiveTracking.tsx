@@ -31,14 +31,15 @@ const LiveTrackingMap: React.FC<LiveTrackingMapProps> = ({
     useState<google.maps.marker.AdvancedMarkerElement | null>(null);
 
   useEffect(() => {
+    if (!map) {
+      return;
+    }
+
     const trafficLayer = new google.maps.TrafficLayer({
       map,
       autoRefresh: false,
     });
 
-    if (!map) {
-      return;
-    }
     if (vehicles.length) {
       const bounds = new google.maps.LatLngBounds();
       vehicles.forEach((item) => {
@@ -153,7 +154,11 @@ const LiveTracking = () => {
   > | null>(null);
 
   useEffect(() => {
-    if (!shownVehicle && data) {
+    if (
+      (!shownVehicle && data) ||
+      (data &&
+        data.length !== (shownVehicle && Object.keys(shownVehicle).length))
+    ) {
       setShownVehicle(
         data?.reduce<Record<number, boolean>>((acc, item) => {
           acc[item.id] = true;
