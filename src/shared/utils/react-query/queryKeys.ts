@@ -7,4 +7,5 @@ export const queryKeys = {
   vehiclesByAccountId: (accountId: number) => ["vehicles", accountId],
   iButtonsByAccountId: (accountId: number) => ["iButtons", accountId],
   stopsByAccountId: (accountId: number) => ["stops", accountId],
+  liveTrackingByAccountId: (accountId: number) => ["liveTracking", accountId],
 };

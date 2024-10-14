@@ -1,6 +1,7 @@
+import Image from "next/image";
+
 import LoginForm from "#/modules/user/presentation/LoginForm";
 import { iconPaths } from "#/shared/assets/icon_paths";
-import Image from "next/image";
 
 const LoginPage: React.FC = () => {
   return (

@@ -27,10 +27,13 @@ body {
   :root {
     --background: #FBF8F6;
     --radius: 0.5rem;
+    min-height: 100%;
+    width: 100%;  
   }
   body {
-    overflow: initial;
     overscroll-behavior: none;
+    min-height: 100%;
+    width: 100%;  
   }
 }
 

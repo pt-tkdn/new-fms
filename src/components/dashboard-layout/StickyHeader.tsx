@@ -5,18 +5,11 @@ import { usePathname } from "next/navigation";
 
 import { ProfileHeader } from "#/modules/user/presentation/ProfileHeader/ProfileHeader";
 
-// import { ProfileHeaderSkeleton } from "#/modules/user/presentation/ProfileHeader/ProfileHeader";
-
-// const ProfileHeader = dynamic(
-//   () =>
-//     import("#/modules/user/presentation/ProfileHeader/ProfileHeader").then(
-//       (module) => module.ProfileHeader,
-//     ),
-//   {
-//     ssr: false,
-//     loading: () => <ProfileHeaderSkeleton />,
-//   },
-// );
+const SUB_MENU_TITLE = {
+  "live-tracking": "Live Tracking",
+  gps: "GPS",
+  ibutton: "iButton",
+};
 
 const Header = () => {
   const path = usePathname();
@@ -27,13 +20,18 @@ const Header = () => {
 
   if (name.length > 0) {
     const [menu, subMenu] = name.split("/");
+    const subMenuTitle =
+      subMenu in SUB_MENU_TITLE
+        ? SUB_MENU_TITLE[subMenu as keyof typeof SUB_MENU_TITLE]
+        : subMenu.charAt(0).toUpperCase() + subMenu.substring(1);
+
     title = (
       <span className="font-bold">
         <span className="opacity-50">
           {menu.charAt(0).toUpperCase() + menu.substring(1)}
           {" > "}
         </span>
-        <span className="opacity-100">{subMenu}</span>
+        <span className="opacity-100">{subMenuTitle}</span>
       </span>
     );
   }

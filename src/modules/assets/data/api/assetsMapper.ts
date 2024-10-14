@@ -58,7 +58,7 @@ export const mapVehicleResponseToEntity = (
 ) => {
   return res.data.map((vehicle) => {
     return createVehicle({
-      position: null,
+      gpsPosition: null,
       capacity: parseInt(vehicle.capacity ?? "0"),
       gps: createGPS({
         id: vehicle.gps.id,

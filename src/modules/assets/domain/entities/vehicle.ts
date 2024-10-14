@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { gps } from "#/modules/assets/domain/entities/gps";
+import { gpsPosition } from "#/modules/monitoring/domain/entities/gpsPosition";
 import type { Nullable } from "#/shared/core/domain/types/nullable";
 import {
   activeStatus,
@@ -32,12 +33,7 @@ export const vehicle = z.object({
     .number()
     .nullable()
     .transform((val) => val ?? 0),
-  position: z
-    .object({
-      lat: z.number(),
-      lng: z.number(),
-    })
-    .nullable(),
+  gpsPosition: gpsPosition.nullable(),
   gps: gps.nullable(),
 });
 

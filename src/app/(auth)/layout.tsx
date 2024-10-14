@@ -5,7 +5,7 @@ import { illustrationPaths } from "#/shared/assets/illustration_paths";
 
 const AuthLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="flex flex-col sm:flex-row">
+    <div className="flex flex-col sm:flex-row h-screen overflow-auto">
       <div className="hidden sticky lg:flex top-0 w-[50vw] left-0 h-screen">
         <Image
           className="w-full object-cover"
