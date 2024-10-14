@@ -68,12 +68,27 @@ const CONFIGURATION_SUB_MENU: SubMenu[] = [
   },
 ];
 const OPERATION_SUB_MENU = ["Trip", "Upload Trip", "Deliveries"];
-const MONITORING_SUB_MENU = [
-  "Live Tracking",
-  "Monitoring Schematic",
-  "Monitoring Vehicle",
-  "Monitoring Router Vehicle",
-  "Monitoring Custom Alerts Event",
+const MONITORING_SUB_MENU: SubMenu[] = [
+  {
+    name: "Live Tracking",
+    routeName: "/monitoring/live-tracking",
+  },
+  {
+    name: "Monitoring Schematic",
+    routeName: "/",
+  },
+  {
+    name: "Monitoring Vehicle",
+    routeName: "/",
+  },
+  {
+    name: "Monitoring Router Vehicle",
+    routeName: "/",
+  },
+  {
+    name: "Monitoring Custom Alerts Event",
+    routeName: "/",
+  },
 ];
 const REPORTS_SUB_MENU = [
   "Report History Vehicle",
@@ -204,7 +219,13 @@ const SideBarMenu = () => {
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col px-4 gap-y-2">
                   {MONITORING_SUB_MENU.map((item) => (
-                    <span key={item}>{item}</span>
+                    <Link
+                      className="hover:text-primary"
+                      href={item.routeName}
+                      key={item.name}
+                    >
+                      {item.name}
+                    </Link>
                   ))}
                 </AccordionContent>
               </li>

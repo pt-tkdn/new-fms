@@ -14,7 +14,6 @@ export const mapGPSResponseToEntity = (
 ): GPS[] => {
   return res.data.map((asset) => {
     return createGPS({
-      accountId: asset.account_id,
       fuelPrice: asset.fuel_price,
       fuelQuantity: asset.fuel_quantity,
       id: asset.id,
@@ -59,10 +58,9 @@ export const mapVehicleResponseToEntity = (
 ) => {
   return res.data.map((vehicle) => {
     return createVehicle({
-      accountId: vehicle.account_id,
-      capacity: vehicle.capacity,
+      position: null,
+      capacity: parseInt(vehicle.capacity ?? "0"),
       gps: createGPS({
-        accountId: vehicle.gps.account_id,
         id: vehicle.gps.id,
         idGps: vehicle.gps.id_gps,
         imei: vehicle.gps.imei,

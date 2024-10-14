@@ -2,11 +2,13 @@ import { z } from "zod";
 
 import { gps } from "#/modules/assets/domain/entities/gps";
 import type { Nullable } from "#/shared/core/domain/types/nullable";
-import { activeStatus } from "#/shared/core/domain/valueObjects/activeStatus";
+import {
+  activeStatus,
+  fromNumber,
+} from "#/shared/core/domain/valueObjects/activeStatus";
 
-const vehicle = z.object({
+export const vehicle = z.object({
   id: z.number(),
-  accountId: z.number(),
   vehicleNo: z.string(),
   vehicleCode: z.string(),
   stnkNumber: z
@@ -22,11 +24,20 @@ const vehicle = z.object({
     .nullable()
     .transform((val) => val ?? ""),
   capacity: z
-    .string()
+    .number()
     .nullable()
-    .transform((val) => val ?? ""),
-  status: activeStatus,
-  odometer: z.number(),
+    .transform((val) => val ?? 0),
+  status: activeStatus.nullable().transform((val) => val ?? fromNumber(0)),
+  odometer: z
+    .number()
+    .nullable()
+    .transform((val) => val ?? 0),
+  position: z
+    .object({
+      lat: z.number(),
+      lng: z.number(),
+    })
+    .nullable(),
   gps: gps.nullable(),
 });
 

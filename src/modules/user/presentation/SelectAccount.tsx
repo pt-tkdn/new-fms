@@ -23,7 +23,11 @@ import {
 } from "#/shared/components/ui/popover";
 import { cn } from "#/shared/lib/utils";
 
-const SelectAccount: React.FC = () => {
+export interface SelectAccountProps {
+  className?: string;
+}
+
+const SelectAccount: React.FC<SelectAccountProps> = ({ className }) => {
   const { data } = useAccountsQuery();
   const [open, setOpen] = useState(false);
   const account = useAccountState();
@@ -42,7 +46,10 @@ const SelectAccount: React.FC = () => {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="w-80 rounded-lg font-bold flex justify-between py-3 h-auto"
+          className={cn(
+            "w-80 rounded-lg font-bold flex justify-between py-3 h-auto",
+            className,
+          )}
         >
           {account?.id ? selectedAccount?.name : "Choose Account"}
           <ChevronDown className="h-4 w-4" />

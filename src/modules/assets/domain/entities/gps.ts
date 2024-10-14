@@ -9,7 +9,6 @@ export const gps = z.object({
   model: z.string(),
   fuelQuantity: z.number().nullable(),
   fuelPrice: z.number().nullable(),
-  accountId: z.number(),
   idGps: z.number(),
   simCard: simCard.nullable(),
   sensors: z.null(),

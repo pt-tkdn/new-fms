@@ -67,7 +67,7 @@ export const useUserSelector = <T>(selector?: (state: User | null) => T): T => {
         : (state) => state.data! as T,
     ),
   );
-
+  console.log("data", useUserStore.getState().data);
   return data;
 };
 
