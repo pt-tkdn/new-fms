@@ -75,6 +75,7 @@ const SelectAccount: React.FC<SelectAccountProps> = ({ className }) => {
                         (acc) => acc.id.toString() === currentValue,
                       )!,
                     );
+                    setSearch("");
                     setOpen(false);
                   }}
                 >

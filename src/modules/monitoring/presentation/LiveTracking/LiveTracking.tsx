@@ -4,6 +4,7 @@ import {
   InfoWindow,
   Map,
   useMap,
+  useMapsLibrary,
 } from "@vis.gl/react-google-maps";
 import dayjs from "dayjs";
 import React, { useEffect, useMemo, useState } from "react";
@@ -25,10 +26,16 @@ const LiveTrackingMap: React.FC<LiveTrackingMapProps> = ({
   vehicles,
 }) => {
   const map = useMap();
+  const mapLib = useMapsLibrary("maps");
   const [vehicleInfo, setVehicleInfo] = useState<Vehicle | null>();
   const [selectedMarker, setSelectedMarker] =
     useState<google.maps.marker.AdvancedMarkerElement | null>(null);
 
+  // this effect responsible for following tasks:
+  // 1. create traffic layer
+  // 2. create tail line for selected vehicle
+  // 3. set map center to the bound of vehicles
+  // 4. remove traffic layer when component is unmounted
   useEffect(() => {
     if (!map) {
       return;
@@ -52,7 +59,27 @@ const LiveTrackingMap: React.FC<LiveTrackingMapProps> = ({
     return () => {
       trafficLayer.setMap(null);
     };
-  }, [map, vehicles]);
+  }, [map, mapLib, vehicleInfo?.gpsPosition?.tail, vehicleInfo?.id, vehicles]);
+
+  useEffect(() => {
+    if (mapLib && vehicleInfo?.id) {
+      const tailLine = new mapLib.Polyline({
+        path:
+          vehicleInfo.gpsPosition?.tail.map((item) => {
+            return {
+              lat: parseFloat(item.lat),
+              lng: parseFloat(item.lng),
+            };
+          }) ?? [],
+        strokeColor: "blue",
+      });
+      tailLine.setMap(map);
+
+      return () => {
+        tailLine.setMap(null);
+      };
+    }
+  }, [map, mapLib, vehicleInfo?.gpsPosition?.tail, vehicleInfo?.id]);
 
   if (isLoading) {
     return <Skeleton className="h-auto w-full" />;
@@ -188,7 +215,11 @@ const LiveTracking = () => {
   }, [data, shownVehicle]);
 
   if (!account?.id) {
-    return <span className="m-auto">Please select an account first</span>;
+    return (
+      <div className="flex flex-1 items-center justify-center min-h-[30rem]">
+        Please select an account first
+      </div>
+    );
   }
 
   return (
@@ -204,7 +235,7 @@ const LiveTracking = () => {
           }));
         }}
       />
-      <div className="flex flex-1">
+      <div className="space-y-8 ">
         <LiveTrackingMap vehicles={filteredData ?? []} isLoading={isPending} />
       </div>
     </APIProvider>

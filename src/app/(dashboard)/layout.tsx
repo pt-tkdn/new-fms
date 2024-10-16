@@ -6,9 +6,9 @@ import { UserStoreProvider } from "#/modules/user/application/context/UserProvid
 
 const DashboardLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="flex flex-row max-w-[100vw]">
+    <div className="flex">
       <SideBarMenu />
-      <div className="flex flex-col flex-grow">
+      <div className="flex flex-1 flex-col">
         <UserStoreProvider>
           <Header />
           {children}

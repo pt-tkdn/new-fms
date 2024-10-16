@@ -16,7 +16,7 @@ const ShownVehicles: React.FC<ShownVehiclesProps> = ({
   onSelected,
 }) => {
   return (
-    <div className="flex flex-1 flex-grow flex-row flex-wrap gap-2">
+    <div className="flex flex-1 overflow-x-scroll gap-2 py-4">
       {isLoading &&
         Array.from({ length: 20 }, (_, i) => i).map((_, index) => (
           <Skeleton key={index} className="w-20 h-10" />

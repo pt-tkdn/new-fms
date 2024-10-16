@@ -4,18 +4,14 @@ import SelectAccount from "#/modules/user/presentation/SelectAccount";
 
 export default function LiveMapPage() {
   return (
-    <div className="flex flex-1 flex-col p-8 gap-y-8 flex-shrink-0">
-      <div className="flex flex-1 flex-col gap-y-8">
-        <AccountProvider>
-          <section className="card p-5 flex flex-1 flex-col gap-y-4">
-            <SelectAccount />
+    <div className="flex flex-1 p-8 max-w-[calc(100vw-var(--sidebar-width))]">
+      <AccountProvider>
+        <section className="card p-5 w-full">
+          <SelectAccount />
 
-            <div className="flex flex-1 flex-col gap-y-4">
-              <LiveTracking />
-            </div>
-          </section>
-        </AccountProvider>
-      </div>
+          <LiveTracking />
+        </section>
+      </AccountProvider>
     </div>
   );
 }

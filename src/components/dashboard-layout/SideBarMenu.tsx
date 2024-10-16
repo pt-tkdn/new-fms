@@ -90,19 +90,44 @@ const MONITORING_SUB_MENU: SubMenu[] = [
     routeName: "/",
   },
 ];
-const REPORTS_SUB_MENU = [
-  "Report History Vehicle",
-  "Report Journey Driver",
-  "Report Checkpoint Vehicle",
-  "Report Position GPS",
-  "Report Geofence",
-  "Report Geofence Summary",
-  "Report Summary by KM",
+const REPORTS_SUB_MENU: SubMenu[] = [
+  {
+    name: "Report History Vehicle",
+    routeName: "/",
+  },
+  {
+    name: "Report Journey Vehicle",
+    routeName: "/",
+  },
+  {
+    name: "Report Journey Driver",
+    routeName: "/",
+  },
+  {
+    name: "Report Checkpoint Vehicle",
+    routeName: "/",
+  },
+  {
+    name: "Report Position GPS",
+    routeName: "/",
+  },
+  {
+    name: "Report Geofence",
+    routeName: "/",
+  },
+  {
+    name: "Report Geofence Summary",
+    routeName: "/",
+  },
+  {
+    name: "Report Summary by KM",
+    routeName: "/",
+  },
 ];
 
 const SideBarMenu = () => {
   return (
-    <aside className="min-w-[240px] sticky top-0 h-screen border-r px-[10px] bg-white overflow-y-auto">
+    <aside className="min-w-sidebar-width sticky top-0 h-screen border-r px-[10px] bg-white overflow-y-auto">
       <Image
         className="w-36 object-contain mx-auto my-10"
         src={iconPaths.fmsLogo}
@@ -248,7 +273,13 @@ const SideBarMenu = () => {
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col px-4 gap-y-2">
                   {REPORTS_SUB_MENU.map((item) => (
-                    <span key={item}>{item}</span>
+                    <Link
+                      className="hover:text-primary"
+                      href={item.routeName}
+                      key={item.name}
+                    >
+                      {item.name}
+                    </Link>
                   ))}
                 </AccordionContent>
               </li>

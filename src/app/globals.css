@@ -27,8 +27,9 @@ body {
   :root {
     --background: #FBF8F6;
     --radius: 0.5rem;
+    --sidebar-width: 250px;
     min-height: 100%;
-    width: 100%;  
+    width: 100%;
   }
   body {
     overscroll-behavior: none;

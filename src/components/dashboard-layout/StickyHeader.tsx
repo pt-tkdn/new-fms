@@ -37,7 +37,7 @@ const Header = () => {
   }
 
   return (
-    <header className="flex h-16 sticky top-0 z-10 items-center pl-8 pr-6 border-b bg-white">
+    <header className="flex h-16 sticky top-0 z-50 items-center pl-8 pr-6 border-b bg-white">
       <div className="flex flex-grow">{title}</div>
       <div className="flex items-center gap-x-5">
         <button className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 hover:bg-slate-300/90 transition-colors text-slate-500">
