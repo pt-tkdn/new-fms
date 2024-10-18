@@ -9,6 +9,7 @@ const SUB_MENU_TITLE = {
   "live-tracking": "Live Tracking",
   gps: "GPS",
   ibutton: "iButton",
+  "report-journey-vehicle": "Report Journey Vehicle",
 };
 
 const Header = () => {

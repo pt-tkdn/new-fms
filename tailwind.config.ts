@@ -26,12 +26,15 @@ const config: Config = {
       },
       width: {
         "sidebar-width": "var(--sidebar-width)",
+        "page-width": "var(--page-width)",
       },
       minWidth: {
         "sidebar-width": "var(--sidebar-width)",
+        "page-width": "var(--page-width)",
       },
       maxWidth: {
         "sidebar-width": "var(--sidebar-width)",
+        "page-width": "var(--page-width)",
       },
       keyframes: {
         "accordion-down": {

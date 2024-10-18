@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
 
-import { useGPSQuery } from "#/modules/application/hooks/useGPSQuery";
+import { useGPSQuery } from "#/modules/assets/application/hooks/useGPSQuery";
 import type { GPS } from "#/modules/assets/domain/entities/gps";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";

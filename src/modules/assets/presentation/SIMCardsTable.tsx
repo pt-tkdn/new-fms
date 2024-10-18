@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
 
-import { useSIMCardsQuery } from "#/modules/application/hooks/useSIMCardsQuery";
+import { useSIMCardsQuery } from "#/modules/assets/application/hooks/useSIMCardsQuery";
 import type { SimCard } from "#/modules/assets/domain/entities/simCard";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";

@@ -28,6 +28,7 @@ body {
     --background: #FBF8F6;
     --radius: 0.5rem;
     --sidebar-width: 250px;
+    --page-width: min(100%, calc(100vw - var(--sidebar-width)));
     min-height: 100%;
     width: 100%;
   }

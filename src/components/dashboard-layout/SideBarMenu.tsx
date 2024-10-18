@@ -97,7 +97,7 @@ const REPORTS_SUB_MENU: SubMenu[] = [
   },
   {
     name: "Report Journey Vehicle",
-    routeName: "/",
+    routeName: "/reports/report-journey-vehicle",
   },
   {
     name: "Report Journey Driver",

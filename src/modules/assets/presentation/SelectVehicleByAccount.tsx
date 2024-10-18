@@ -3,10 +3,11 @@ import { Check, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 import {
-  useAccountActions,
-  useAccountState,
-} from "#/modules/user/application/context/AccountProvider";
-import { useAccountsQuery } from "#/modules/user/application/hooks/useAccountsQuery";
+  useVehicleActions,
+  useVehicleState,
+} from "#/modules/assets/application/context/VehicleProvider";
+import { useVehiclesQuery } from "#/modules/assets/application/hooks/useVehiclesQuery";
+import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Button } from "#/shared/components/ui/button";
 import {
   CommandInput,
@@ -23,26 +24,34 @@ import {
 } from "#/shared/components/ui/popover";
 import { cn } from "#/shared/lib/utils";
 
-export interface SelectAccountProps {
+export interface SelectVehicleProps {
   className?: string;
   dropdownClassName?: string;
 }
 
-const SelectAccount: React.FC<SelectAccountProps> = ({
+const SelectVehicleByAccount: React.FC<SelectVehicleProps> = ({
   className,
   dropdownClassName,
 }) => {
-  const { data } = useAccountsQuery();
-  const [open, setOpen] = useState(false);
   const account = useAccountState();
-  const setAccount = useAccountActions();
+  const { data } = useVehiclesQuery(account?.id);
+  const [open, setOpen] = useState(false);
+  const vehicle = useVehicleState();
+  const setVehicle = useVehicleActions();
   const [search, setSearch] = useState("");
 
+  const [prevAccount, setPrevAccount] = useState(account?.id);
+
+  if (prevAccount !== account?.id) {
+    setPrevAccount(account?.id);
+    setVehicle(null);
+  }
+
   const filteredData = data?.filter((acc) =>
-    acc.name.toLowerCase().includes(search.toLowerCase()),
+    acc.vehicleCode.toLowerCase().includes(search.toLowerCase()),
   );
-  const selectedAccount = data?.find(
-    (acc) => acc.id.toString() === account?.id.toString(),
+  const selectedVehicle = data?.find(
+    (acc) => acc.id.toString() === vehicle?.id.toString(),
   );
 
   return (
@@ -55,26 +64,26 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
             className,
           )}
         >
-          {account?.id ? selectedAccount?.name : "Choose Account"}
+          {vehicle?.id ? selectedVehicle?.vehicleCode : "Choose Vehicle"}
           <ChevronDown className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
 
       <PopoverContent className={cn("w-80 p-0", dropdownClassName)}>
-        <Command shouldFilter={false} label="Account">
+        <Command shouldFilter={false} label="Vehicle">
           <CommandInput
             onValueChange={setSearch}
-            placeholder="Search Account..."
+            placeholder="Search Vehicle..."
           />
           <CommandList>
-            <CommandEmpty>No account found.</CommandEmpty>
+            <CommandEmpty>No vehicle found.</CommandEmpty>
             <CommandGroup>
               {filteredData?.map((acc) => (
                 <CommandItem
                   key={acc.id}
                   value={acc.id.toString()}
                   onSelect={(currentValue) => {
-                    setAccount(
+                    setVehicle(
                       filteredData.find(
                         (acc) => acc.id.toString() === currentValue,
                       )!,
@@ -86,12 +95,12 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      account?.id.toString() === acc.id.toString()
+                      vehicle?.id.toString() === acc.id.toString()
                         ? "opacity-100"
                         : "opacity-0",
                     )}
                   />
-                  {acc.name}
+                  {acc.vehicleCode}
                 </CommandItem>
               ))}
             </CommandGroup>
@@ -102,4 +111,4 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
   );
 };
 
-export default SelectAccount;
+export default SelectVehicleByAccount;

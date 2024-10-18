@@ -10,9 +10,6 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
 
-import { useDriverQuery } from "#/modules/assets/application/hooks/useDriverQuery";
-import type { Driver } from "#/modules/assets/domain/entities/driver";
-import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 import {
   Table,
@@ -27,86 +24,96 @@ import TableFilter from "#/shared/core/presentation/TableFilter";
 import TablePagination from "#/shared/core/presentation/TablePagination";
 import { useToast } from "#/shared/hooks/use-toast";
 import * as exportData from "#/shared/utils/exportData";
+import { useMutationState } from "@tanstack/react-query";
+import { queryKeys } from "#/shared/utils/react-query/queryKeys";
+import { ReportJourneyVehicle } from "#/modules/reports/domain/entities/reportJourneyVehicle";
 
-const columnHelper = createColumnHelper<Driver>();
+const columnHelper = createColumnHelper<ReportJourneyVehicle>();
 
 const defaultColumns = [
-  columnHelper.accessor("name", {
-    id: "name",
-    header: () => "Name",
+  columnHelper.accessor("start", {
+    id: "start",
+    header: () => "Start Time",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("code", {
-    id: "code",
-    header: () => "Driver Code",
+  columnHelper.accessor("end", {
+    id: "End Time",
+    header: () => "Start Location",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("iButton.no", {
-    id: "iButton.no",
-    header: () => "iButton No",
+  columnHelper.accessor("endLocation", {
+    id: "endLocation",
+    header: () => "End Location",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("licenseNumber", {
-    id: "licenseNumber",
-    header: () => "License Number",
+  columnHelper.accessor("duration", {
+    id: "duration",
+    header: () => "Duration",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor("phone", {
-    id: "phone",
-    header: () => "Phone Number",
+  columnHelper.accessor("distance", {
+    id: "distance",
+    header: () => "Distance",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
 
-  columnHelper.accessor("status", {
-    id: "status",
-    header: () => "Status",
-    cell: (info) =>
-      info.getValue().charAt(0).toUpperCase() + info.getValue().slice(1),
+  columnHelper.accessor("topSpeed", {
+    id: "topSpeed",
+    header: () => "Top Speed",
+    cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.display({
-    id: "action",
-    header: () => "Action",
-    cell: (_) => <span className="text-blue-500">TODO</span>,
+  columnHelper.accessor("averageSpeed", {
+    id: "averageSpeed",
+    header: () => "Average Speed",
+    cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
+  }),
+
+  columnHelper.accessor("fuelConsumptionGps", {
+    id: "fuelConsumptionGps",
+    header: () => "Fuel Consumption (GPS)",
+    cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor("fuelPriceGps", {
+    id: "fuelPriceGps",
+    header: () => "Fuel Price (GPS)",
+    cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
   }),
 ];
 
-const fallbackData: Driver[] = Array(10).fill({} as unknown as Driver);
+const fallbackData: ReportJourneyVehicle[] = Array(10).fill(
+  {} as unknown as ReportJourneyVehicle,
+);
 
-const DriversTable = () => {
-  const account = useAccountState();
-  const { data, isFetching } = useDriverQuery(account?.id);
+const ReportJourneyVehicleTable = () => {
+  const state = useMutationState({
+    filters: {
+      mutationKey: queryKeys.reportsJourneyVehicle,
+    },
+    select: (s) => s.state.data as ReportJourneyVehicle[],
+  });
+  const data = state[state.length - 1];
   const { toast } = useToast();
   const tableRef = useRef<HTMLTableElement>(null);
 
-  const rowsData = useMemo(() => {
-    if (isFetching) return fallbackData;
-
-    return data ?? [];
-  }, [data, isFetching]);
-
   const columns = useMemo(() => {
-    if (isFetching) {
-      return defaultColumns.map((column) => ({
-        ...column,
-        cell: () => <Skeleton className="w-4/5 h-3 rounded-sm" />,
-      }));
-    }
-
     return defaultColumns;
-  }, [isFetching]);
+  }, []);
 
   const table = useReactTable({
-    columns: columns,
-    data: rowsData,
-    getCoreRowModel: getCoreRowModel<Driver>(),
-    getFilteredRowModel: getFilteredRowModel<Driver>(),
-    getPaginationRowModel: getPaginationRowModel<Driver>(),
+    columns: defaultColumns,
+    data: data ?? [],
+    getCoreRowModel: getCoreRowModel<ReportJourneyVehicle>(),
+    getFilteredRowModel: getFilteredRowModel<ReportJourneyVehicle>(),
+    getPaginationRowModel: getPaginationRowModel<ReportJourneyVehicle>(),
   });
 
   const onExport = (type: ExportType) => {
@@ -121,12 +128,15 @@ const DriversTable = () => {
 
     const rows = table.getFilteredRowModel().rows.map((row) => {
       return {
-        Name: row.original.name,
-        "Driver Code": row.original.code,
-        "iButton No": row.original.iButton?.no ?? "",
-        "License Number": row.original.licenseNumber ?? "",
-        "Phone Number": row.original.phone ?? "",
-        Status: row.original.status,
+        "Start Time": row.original.start,
+        "End Time": row.original.end,
+        "End Location": row.original.endLocation,
+        Duration: row.original.duration,
+        Distance: row.original.distance,
+        "Top Speed": row.original.topSpeed,
+        "Average Speed": row.original.averageSpeed,
+        "Fuel Consumption (GPS)": row.original.fuelConsumptionGps,
+        "Fuel Price (GPS)": row.original.fuelPriceGps,
       };
     });
 
@@ -211,4 +221,4 @@ const DriversTable = () => {
   );
 };
 
-export default DriversTable;
+export default ReportJourneyVehicleTable;

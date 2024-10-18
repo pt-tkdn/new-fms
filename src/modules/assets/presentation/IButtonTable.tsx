@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
 
-import { useIButtonQuery } from "#/modules/application/hooks/useIButtonQuery";
+import { useIButtonQuery } from "#/modules/assets/application/hooks/useIButtonQuery";
 import type { IButton } from "#/modules/assets/domain/entities/iButton";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";

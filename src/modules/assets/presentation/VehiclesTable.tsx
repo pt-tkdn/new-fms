@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
 
-import { useVehiclesQuery } from "#/modules/application/hooks/useVehiclesQuery";
+import { useVehiclesQuery } from "#/modules/assets/application/hooks/useVehiclesQuery";
 import type { Vehicle } from "#/modules/assets/domain/entities/vehicle";
 import { useAccountState } from "#/modules/user/application/context/AccountProvider";
 import { Skeleton } from "#/shared/components/ui/skeleton";

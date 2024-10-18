@@ -8,7 +8,7 @@ const DashboardLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="flex">
       <SideBarMenu />
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col max-w-page-width">
         <UserStoreProvider>
           <Header />
           {children}
