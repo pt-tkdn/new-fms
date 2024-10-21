@@ -1,4 +1,4 @@
-import { Printer, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 import { Input } from "#/shared/components/ui/input";
 import {
@@ -53,10 +53,10 @@ const TableFilter: React.FC<TableFilterProps> = ({
           </SelectContent>
         </Select>
 
-        <button className="flex w-28 items-center justify-between rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm outline-primary focus-visible:ring-primary ring-offset-white font-bold hover:bg-slate-50 transition-colors">
+        {/* <button className="flex w-28 items-center justify-between rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm outline-primary focus-visible:ring-primary ring-offset-white font-bold hover:bg-slate-50 transition-colors">
           Print
           <Printer size={20} />
-        </button>
+        </button> */}
       </div>
 
       <div className="flex flex-1">

@@ -64,7 +64,9 @@ const SelectVehicleByAccount: React.FC<SelectVehicleProps> = ({
             className,
           )}
         >
-          {vehicle?.id ? selectedVehicle?.vehicleCode : "Choose Vehicle"}
+          {vehicle?.id
+            ? `${selectedVehicle?.vehicleNo} - ${selectedVehicle?.vehicleCode}`
+            : "Choose Vehicle"}
           <ChevronDown className="h-4 w-4" />
         </Button>
       </PopoverTrigger>

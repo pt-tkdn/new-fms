@@ -32,6 +32,7 @@ import type { ExportType } from "#/shared/core/presentation/TableFilter";
 import TableFilter from "#/shared/core/presentation/TableFilter";
 import TablePagination from "#/shared/core/presentation/TablePagination";
 import { useToast } from "#/shared/hooks/use-toast";
+import { sumDuration } from "#/shared/lib/utils";
 import * as exportData from "#/shared/utils/exportData";
 
 const columnHelper = createColumnHelper<ReportJourneyVehicle>();
@@ -40,6 +41,14 @@ const defaultColumns = [
   columnHelper.accessor("start", {
     id: "start",
     header: () => "Start Time",
+    cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
+    sortingFn: "datetime",
+    sortDescFirst: false,
+  }),
+  columnHelper.accessor("end", {
+    id: "end",
+    header: () => "End Time",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
     sortingFn: "datetime",
@@ -117,7 +126,16 @@ const ReportJourneyVehicleTable = () => {
   const rowsData = useMemo(() => {
     if (isFetching) return fallbackData;
 
-    return data ?? [];
+    const copyData = [...(data ?? [])];
+
+    const lastIndex = copyData.length - 1;
+    const totalDuration = copyData.reduce((acc, curr, index) => {
+      if (index === lastIndex) return acc;
+      return sumDuration(acc, curr.duration);
+    }, "0s");
+    console.log("totalDuration", totalDuration);
+    copyData[lastIndex].duration = totalDuration;
+    return copyData;
   }, [data, isFetching]);
 
   const columns = useMemo(() => {
@@ -203,6 +221,7 @@ const ReportJourneyVehicleTable = () => {
                       <TableHead key={header.id}>
                         <Button
                           variant="ghost"
+                          className="bg-transparent hover:bg-transparent p-0"
                           onClick={() =>
                             header.column.toggleSorting(
                               header.column.getIsSorted() === "asc",
@@ -216,9 +235,9 @@ const ReportJourneyVehicleTable = () => {
                           {!isSorted ? (
                             <CaretSortIcon className="ml-1 h-4 w-4" />
                           ) : isSorted === "asc" ? (
-                            <CaretUpIcon className="ml-1 h-4 w-4" />
+                            <CaretUpIcon className="text-primary ml-1 h-4 w-4" />
                           ) : (
-                            <CaretDownIcon className="ml-1 h-4 w-4" />
+                            <CaretDownIcon className="text-primary ml-1 h-4 w-4" />
                           )}
                         </Button>
                       </TableHead>
