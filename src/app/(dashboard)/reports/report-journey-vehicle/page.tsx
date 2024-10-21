@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import * as React from "react";
 
 import VehicleProvider from "#/modules/assets/application/context/VehicleProvider";
-import AccountProvider from "#/modules/user/application/context/AccountProvider";
 import ReportJourneyVehicleForm from "#/modules/reports/presentation/ReportJourneyVehicleForm/ReportJourneyVehicleForm";
 import ReportJourneyVehicleTable from "#/modules/reports/presentation/ReportJourneyVehicleForm/ReportJourneyVehicleTable";
+import AccountProvider from "#/modules/user/application/context/AccountProvider";
 
 export const metadata: Metadata = {
   title: "Report Journey Vehicle",

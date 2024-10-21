@@ -51,7 +51,7 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
         <Button
           variant="outline"
           className={cn(
-            "w-80 rounded-lg font-bold flex justify-between py-3 h-auto",
+            "w-80 rounded-lg font-bold flex justify-between py-3 h-auto whitespace-nowrap text-ellipsis overflow-hidden ",
             className,
           )}
         >

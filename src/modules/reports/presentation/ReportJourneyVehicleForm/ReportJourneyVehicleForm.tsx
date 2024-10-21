@@ -8,16 +8,15 @@ import { useEffect } from "react";
 
 import { useVehicleState } from "#/modules/assets/application/context/VehicleProvider";
 import SelectVehicleByAccount from "#/modules/assets/presentation/SelectVehicleByAccount";
+import { useReportJourneyVehicle } from "#/modules/reports/application/hooks/useReportJourneyVehicle";
 import type { ReportJourneyVehicleValidation } from "#/modules/reports/domain/entities/reportJourneyVehicle";
 import { reportJourneyVehicleValidation } from "#/modules/reports/domain/entities/reportJourneyVehicle";
 import DateTimePicker from "#/modules/reports/presentation/components/DateTimePicker";
 import SelectStopTime from "#/modules/reports/presentation/components/SelectStopTime";
 import SelectAccount from "#/modules/user/presentation/SelectAccount";
 import { Button } from "#/shared/components/ui/button";
-import { useReportJourneyVehicle } from "#/modules/reports/application/hooks/useReportJourneyVehicle";
 
 const ReportJourneyVehicleForm: React.FC = () => {
-  const { mutate } = useReportJourneyVehicle();
   const form = useForm<
     ReportJourneyVehicleValidation,
     Validator<ReportJourneyVehicleValidation>
@@ -33,9 +32,10 @@ const ReportJourneyVehicleForm: React.FC = () => {
       onChange: reportJourneyVehicleValidation,
     },
     onSubmit: (values) => {
-      mutate(values.value);
+      fetch(values.value);
     },
   });
+  const { fetch } = useReportJourneyVehicle(form.state.values);
 
   const vehicle = useVehicleState();
 

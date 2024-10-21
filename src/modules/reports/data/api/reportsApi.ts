@@ -1,4 +1,3 @@
-import { vehicle } from "#/modules/assets/domain/entities/vehicle";
 import { mapReportsJourneyVehicleResponseToEntity } from "#/modules/reports/data/api/reportsApiMapper";
 import httpClient from "#/shared/utils/httpClient";
 

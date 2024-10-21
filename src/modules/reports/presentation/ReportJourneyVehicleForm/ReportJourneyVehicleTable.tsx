@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
+import { useMutationState } from "@tanstack/react-query";
 import {
   createColumnHelper,
   flexRender,
@@ -10,6 +12,8 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
 
+import { useReportJourneyVehicle } from "#/modules/reports/application/hooks/useReportJourneyVehicle";
+import type { ReportJourneyVehicle } from "#/modules/reports/domain/entities/reportJourneyVehicle";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 import {
   Table,
@@ -24,9 +28,7 @@ import TableFilter from "#/shared/core/presentation/TableFilter";
 import TablePagination from "#/shared/core/presentation/TablePagination";
 import { useToast } from "#/shared/hooks/use-toast";
 import * as exportData from "#/shared/utils/exportData";
-import { useMutationState } from "@tanstack/react-query";
 import { queryKeys } from "#/shared/utils/react-query/queryKeys";
-import { ReportJourneyVehicle } from "#/modules/reports/domain/entities/reportJourneyVehicle";
 
 const columnHelper = createColumnHelper<ReportJourneyVehicle>();
 
@@ -94,23 +96,30 @@ const fallbackData: ReportJourneyVehicle[] = Array(10).fill(
 );
 
 const ReportJourneyVehicleTable = () => {
-  const state = useMutationState({
-    filters: {
-      mutationKey: queryKeys.reportsJourneyVehicle,
-    },
-    select: (s) => s.state.data as ReportJourneyVehicle[],
-  });
-  const data = state[state.length - 1];
+  const { data, isFetching } = useReportJourneyVehicle();
   const { toast } = useToast();
   const tableRef = useRef<HTMLTableElement>(null);
 
+  const rowsData = useMemo(() => {
+    if (isFetching) return fallbackData;
+
+    return data ?? [];
+  }, [data, isFetching]);
+
   const columns = useMemo(() => {
+    if (isFetching) {
+      return defaultColumns.map((column) => ({
+        ...column,
+        cell: () => <Skeleton className="w-4/5 h-3 rounded-sm" />,
+      }));
+    }
+
     return defaultColumns;
-  }, []);
+  }, [isFetching]);
 
   const table = useReactTable({
-    columns: defaultColumns,
-    data: data ?? [],
+    columns: columns,
+    data: rowsData,
     getCoreRowModel: getCoreRowModel<ReportJourneyVehicle>(),
     getFilteredRowModel: getFilteredRowModel<ReportJourneyVehicle>(),
     getPaginationRowModel: getPaginationRowModel<ReportJourneyVehicle>(),
