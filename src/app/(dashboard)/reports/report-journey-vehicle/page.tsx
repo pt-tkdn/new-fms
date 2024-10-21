@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import * as React from "react";
 
 import VehicleProvider from "#/modules/assets/application/context/VehicleProvider";
-import ReportJourneyVehicleForm from "#/modules/reports/presentation/ReportJourneyVehicleForm/ReportJourneyVehicleForm";
-import ReportJourneyVehicleTable from "#/modules/reports/presentation/ReportJourneyVehicleForm/ReportJourneyVehicleTable";
+import ReportJourneyVehicle from "#/modules/reports/presentation/ReportJourneyVehicleForm";
 import AccountProvider from "#/modules/user/application/context/AccountProvider";
 
 export const metadata: Metadata = {
@@ -18,8 +17,7 @@ const ReportJourneyVehiclePage = () => {
         <div className="flex flex-1 flex-col gap-y-4">
           <AccountProvider>
             <VehicleProvider>
-              <ReportJourneyVehicleForm />
-              <ReportJourneyVehicleTable />
+              <ReportJourneyVehicle />
             </VehicleProvider>
           </AccountProvider>
         </div>

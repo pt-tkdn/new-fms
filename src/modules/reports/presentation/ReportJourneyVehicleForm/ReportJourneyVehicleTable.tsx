@@ -1,19 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { useMutationState } from "@tanstack/react-query";
+import {
+  CaretSortIcon,
+  CaretUpIcon,
+  CaretDownIcon,
+} from "@radix-ui/react-icons";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { useMemo, useRef } from "react";
 
 import { useReportJourneyVehicle } from "#/modules/reports/application/hooks/useReportJourneyVehicle";
 import type { ReportJourneyVehicle } from "#/modules/reports/domain/entities/reportJourneyVehicle";
+import { Button } from "#/shared/components/ui/button";
 import { Skeleton } from "#/shared/components/ui/skeleton";
 import {
   Table,
@@ -28,7 +33,6 @@ import TableFilter from "#/shared/core/presentation/TableFilter";
 import TablePagination from "#/shared/core/presentation/TablePagination";
 import { useToast } from "#/shared/hooks/use-toast";
 import * as exportData from "#/shared/utils/exportData";
-import { queryKeys } from "#/shared/utils/react-query/queryKeys";
 
 const columnHelper = createColumnHelper<ReportJourneyVehicle>();
 
@@ -38,30 +42,36 @@ const defaultColumns = [
     header: () => "Start Time",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+    sortingFn: "datetime",
+    sortDescFirst: false,
   }),
-  columnHelper.accessor("end", {
-    id: "End Time",
+  columnHelper.accessor("startLocation", {
+    id: "startLocation",
     header: () => "Start Location",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+    sortingFn: "datetime",
   }),
   columnHelper.accessor("endLocation", {
     id: "endLocation",
     header: () => "End Location",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+    sortingFn: "alphanumeric",
   }),
   columnHelper.accessor("duration", {
     id: "duration",
     header: () => "Duration",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+    sortingFn: "alphanumeric",
   }),
   columnHelper.accessor("distance", {
     id: "distance",
     header: () => "Distance",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+    sortingFn: "alphanumeric",
   }),
 
   columnHelper.accessor("topSpeed", {
@@ -69,12 +79,14 @@ const defaultColumns = [
     header: () => "Top Speed",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+    sortingFn: "alphanumeric",
   }),
   columnHelper.accessor("averageSpeed", {
     id: "averageSpeed",
     header: () => "Average Speed",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+    sortingFn: "alphanumeric",
   }),
 
   columnHelper.accessor("fuelConsumptionGps", {
@@ -82,12 +94,14 @@ const defaultColumns = [
     header: () => "Fuel Consumption (GPS)",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+    sortingFn: "alphanumeric",
   }),
   columnHelper.accessor("fuelPriceGps", {
     id: "fuelPriceGps",
     header: () => "Fuel Price (GPS)",
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+    sortingFn: "alphanumeric",
   }),
 ];
 
@@ -123,6 +137,15 @@ const ReportJourneyVehicleTable = () => {
     getCoreRowModel: getCoreRowModel<ReportJourneyVehicle>(),
     getFilteredRowModel: getFilteredRowModel<ReportJourneyVehicle>(),
     getPaginationRowModel: getPaginationRowModel<ReportJourneyVehicle>(),
+    getSortedRowModel: getSortedRowModel<ReportJourneyVehicle>(),
+    initialState: {
+      sorting: [
+        {
+          id: "start",
+          desc: false,
+        },
+      ],
+    },
   });
 
   const onExport = (type: ExportType) => {
@@ -174,22 +197,30 @@ const ReportJourneyVehicleTable = () => {
               return (
                 <TableRow key={headerGroups.id}>
                   {headerGroups.headers.map((header) => {
-                    if (header.id === "imei") {
-                      return (
-                        <TableHead key={header.id} className="w-48">
+                    const isSorted = header.column.getIsSorted();
+
+                    return (
+                      <TableHead key={header.id}>
+                        <Button
+                          variant="ghost"
+                          onClick={() =>
+                            header.column.toggleSorting(
+                              header.column.getIsSorted() === "asc",
+                            )
+                          }
+                        >
                           {flexRender(
                             header.column.columnDef.header,
                             header.getContext(),
                           )}
-                        </TableHead>
-                      );
-                    }
-                    return (
-                      <TableHead key={header.id}>
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
+                          {!isSorted ? (
+                            <CaretSortIcon className="ml-1 h-4 w-4" />
+                          ) : isSorted === "asc" ? (
+                            <CaretUpIcon className="ml-1 h-4 w-4" />
+                          ) : (
+                            <CaretDownIcon className="ml-1 h-4 w-4" />
+                          )}
+                        </Button>
                       </TableHead>
                     );
                   })}

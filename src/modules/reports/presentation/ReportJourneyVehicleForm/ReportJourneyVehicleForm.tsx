@@ -35,7 +35,7 @@ const ReportJourneyVehicleForm: React.FC = () => {
       fetch(values.value);
     },
   });
-  const { fetch } = useReportJourneyVehicle(form.state.values);
+  const { fetch } = useReportJourneyVehicle();
 
   const vehicle = useVehicleState();
 
