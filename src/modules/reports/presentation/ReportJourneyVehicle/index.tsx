@@ -1,14 +1,17 @@
 "use client";
 
-import ReportJourneyVehicleSummary from "#/modules/reports/presentation/ReportJourneyVehicleForm/ReportJourneyVehicleSummary";
+import { useReportJourneyVehicle } from "#/modules/reports/application/hooks/useReportJourneyVehicle";
 
 import ReportJourneyVehicleForm from "./ReportJourneyVehicleForm";
+import ReportJourneyVehicleSummary from "./ReportJourneyVehicleSummary";
 import ReportJourneyVehicleTable from "./ReportJourneyVehicleTable";
 
 const ReportJourneyVehicle = () => {
+  const { fetch } = useReportJourneyVehicle();
+
   return (
     <>
-      <ReportJourneyVehicleForm />
+      <ReportJourneyVehicleForm onSubmit={(value) => fetch(value)} />
       <ReportJourneyVehicleSummary />
       <ReportJourneyVehicleTable />
     </>

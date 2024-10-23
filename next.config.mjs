@@ -8,8 +8,8 @@ const nextConfig = {
     return config;
   },
   experimental: {
-    typedRoutes: true,
-    reactCompiler: true,
+    // typedRoutes: true,
+    // reactCompiler: true,
   },
 };
 

@@ -1,41 +1,26 @@
 "use client";
 
-import type { Validator } from "@tanstack/react-form";
-import { useForm } from "@tanstack/react-form";
-import { zodValidator } from "@tanstack/zod-form-adapter";
-import dayjs from "dayjs";
 import { useEffect } from "react";
 
 import { useVehicleState } from "#/modules/assets/application/context/VehicleProvider";
 import SelectVehicleByAccount from "#/modules/assets/presentation/SelectVehicleByAccount";
-import { useReportJourneyVehicle } from "#/modules/reports/application/hooks/useReportJourneyVehicle";
+import { useReportJourneyVehicleForm } from "#/modules/reports/application/hooks/useReportJourneyVehicleForm";
 import type { ReportJourneyVehicleValidation } from "#/modules/reports/domain/entities/reportJourneyVehicle";
-import { reportJourneyVehicleValidation } from "#/modules/reports/domain/entities/reportJourneyVehicle";
 import DateTimePicker from "#/modules/reports/presentation/components/DateTimePicker";
 import SelectStopTime from "#/modules/reports/presentation/components/SelectStopTime";
 import SelectAccount from "#/modules/user/presentation/SelectAccount";
 import { Button } from "#/shared/components/ui/button";
 
-const ReportJourneyVehicleForm: React.FC = () => {
-  const form = useForm<
-    ReportJourneyVehicleValidation,
-    Validator<ReportJourneyVehicleValidation>
-  >({
-    defaultValues: {
-      vehicleId: 0,
-      from: dayjs().startOf("day").toDate(),
-      to: dayjs().endOf("day").toDate(),
-      stops: 180,
-    },
-    validatorAdapter: zodValidator(),
-    validators: {
-      onChange: reportJourneyVehicleValidation,
-    },
-    onSubmit: (values) => {
-      fetch(values.value);
-    },
-  });
-  const { fetch } = useReportJourneyVehicle();
+interface ReportJourneyVehicleFormProps {
+  onSubmit: (value: ReportJourneyVehicleValidation) => void;
+}
+
+const ReportJourneyVehicleForm: React.FC<ReportJourneyVehicleFormProps> = ({
+  onSubmit,
+}) => {
+  const form = useReportJourneyVehicleForm(async ({ value }) =>
+    onSubmit(value),
+  );
 
   const vehicle = useVehicleState();
 

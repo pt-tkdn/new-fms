@@ -19,7 +19,7 @@ import {
 
 export interface SubMenu {
   name: string;
-  routeName: __next_route_internal_types__.RouteImpl<string>;
+  routeName: string;
 }
 
 const ASSETS_SUB_MENU: SubMenu[] = [
@@ -92,12 +92,16 @@ const MONITORING_SUB_MENU: SubMenu[] = [
 ];
 const REPORTS_SUB_MENU: SubMenu[] = [
   {
-    name: "Report History Vehicle",
-    routeName: "/",
-  },
-  {
     name: "Report Journey Vehicle",
     routeName: "/reports/report-journey-vehicle",
+  },
+  {
+    name: "Report Graph Sensors",
+    routeName: "/reports/report-graph-sensors",
+  },
+  {
+    name: "Journey Vehicle History",
+    routeName: "/reports/journey-vehicle-history",
   },
   {
     name: "Report Journey Driver",

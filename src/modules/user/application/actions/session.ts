@@ -27,7 +27,7 @@ export async function login(
 
     const user = await userRepository.login(email, password);
 
-    cookies().set("user-session", user.id.toString(), {
+    (await cookies()).set("user-session", user.id.toString(), {
       expires: isRememberMe
         ? dayjs().add(7, "day").toDate()
         : dayjs().add(1, "day").toDate(),
@@ -47,6 +47,6 @@ export async function login(
 }
 
 export async function logout() {
-  cookies().set("user-session", "");
+  (await cookies()).set("user-session", "");
   redirect("/login");
 }

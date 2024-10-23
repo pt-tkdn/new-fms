@@ -1,6 +1,6 @@
 "use client";
 import { Check, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   useVehicleActions,
@@ -42,10 +42,14 @@ const SelectVehicleByAccount: React.FC<SelectVehicleProps> = ({
 
   const [prevAccount, setPrevAccount] = useState(account?.id);
 
-  if (prevAccount !== account?.id) {
-    setPrevAccount(account?.id);
-    setVehicle(null);
-  }
+  useEffect(() => {
+    if (prevAccount !== account?.id) {
+      setPrevAccount(account?.id);
+      setVehicle(null);
+    }
+    // Nah, it's ok
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account?.id, prevAccount]);
 
   const filteredData = data?.filter((acc) =>
     acc.vehicleCode.toLowerCase().includes(search.toLowerCase()),
@@ -64,9 +68,11 @@ const SelectVehicleByAccount: React.FC<SelectVehicleProps> = ({
             className,
           )}
         >
-          {vehicle?.id
-            ? `${selectedVehicle?.vehicleNo} - ${selectedVehicle?.vehicleCode}`
-            : "Choose Vehicle"}
+          <span className="truncate">
+            {vehicle?.id
+              ? `${selectedVehicle?.vehicleNo} - ${selectedVehicle?.vehicleCode}`
+              : "Choose Vehicle"}
+          </span>
           <ChevronDown className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
@@ -102,7 +108,7 @@ const SelectVehicleByAccount: React.FC<SelectVehicleProps> = ({
                         : "opacity-0",
                     )}
                   />
-                  {acc.vehicleCode}
+                  {acc.vehicleNo} - {acc.vehicleCode}
                 </CommandItem>
               ))}
             </CommandGroup>

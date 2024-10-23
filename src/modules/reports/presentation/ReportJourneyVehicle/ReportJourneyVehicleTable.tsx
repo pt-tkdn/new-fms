@@ -119,23 +119,32 @@ const fallbackData: ReportJourneyVehicle[] = Array(10).fill(
 );
 
 const ReportJourneyVehicleTable = () => {
-  const { data, isFetching } = useReportJourneyVehicle();
+  const { data, isFetching, error } = useReportJourneyVehicle();
   const { toast } = useToast();
   const tableRef = useRef<HTMLTableElement>(null);
+
+  console.log("data", data);
+  console.log("isFetching", isFetching);
+  console.log("error", error);
 
   const rowsData = useMemo(() => {
     if (isFetching) return fallbackData;
 
-    const copyData = [...(data ?? [])];
+    if (data && data.length) {
+      const copyData = [...(data ?? [])];
 
-    const lastIndex = copyData.length - 1;
-    const totalDuration = copyData.reduce((acc, curr, index) => {
-      if (index === lastIndex) return acc;
-      return sumDuration(acc, curr.duration);
-    }, "0s");
-    console.log("totalDuration", totalDuration);
-    copyData[lastIndex].duration = totalDuration;
-    return copyData;
+      const lastIndex = copyData.length - 1;
+
+      const totalDuration = copyData.reduce((acc, curr, index) => {
+        if (index === lastIndex) return acc;
+        return sumDuration(acc, curr.duration);
+      }, "0s");
+      console.log("totalDuration", totalDuration);
+      copyData[lastIndex].duration = totalDuration;
+      return copyData;
+    }
+
+    return [];
   }, [data, isFetching]);
 
   const columns = useMemo(() => {

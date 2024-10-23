@@ -10,6 +10,8 @@ const SUB_MENU_TITLE = {
   gps: "GPS",
   ibutton: "iButton",
   "report-journey-vehicle": "Report Journey Vehicle",
+  "report-graph-sensors": "Report Graph Sensors",
+  "journey-vehicle-history": "Journey Vehicle History",
 };
 
 const Header = () => {
